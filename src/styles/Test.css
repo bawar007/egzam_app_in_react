@@ -1,0 +1,26 @@
+.test{
+    display: flex;
+    flex-direction: column;
+}
+
+.test label{
+    min-height: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    background-color: aqua;
+}
+
+.test label:hover{
+    background-color: red;
+}
+.test label:nth-child(){
+    border-bottom: 2px solid black;
+}
+.test label input:nth-last-child(){
+    border-bottom: 2px solid black;
+}
+
+.test label input{
+    margin-left: 10px;
+}
