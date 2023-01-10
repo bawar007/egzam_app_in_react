@@ -1,49 +1,87 @@
 import React from "react";
-import "../../styles/Tested.css";
+
+import Button from "../layouts/Buttons";
 const Tested = (props) => {
   let number = 0;
+  let score = 0;
+  const testAnswer = (selectedA, action, correctA, value) => {
+    if (selectedA === value) {
+      if (action) {
+        score = score + 1;
+        return "isTrue";
+      } else {
+        return "isFalse";
+      }
+    } else if (correctA === value) {
+      return "good";
+    } else if (correctA === value) {
+      return "noChecked";
+    } else {
+      return "noValue";
+    }
+  };
+
+  const selectText = (correctA, selectedA, value) => {
+    if (correctA === value && correctA !== selectedA) {
+      return <em>Poprawna odpowiedź</em>;
+    } else if (value === selectedA && correctA !== value) {
+      return <em>Twoja odpowiedź była zła</em>;
+    } else if (selectedA === correctA && correctA === value) {
+      return <em>Twoja odpowiedź była poprawna</em>;
+    }
+  };
   const table = props.table.map((el) => {
     number = number + 1;
+    const {
+      selectedAnswer,
+      action,
+      correctAnswer,
+      id,
+      question,
+      answerA,
+      answerB,
+      answerC,
+      answerD,
+    } = el;
+
     return (
-      <div key={el.id} className="test">
+      <div key={id} className="result_test">
         <h3>
-          {number}. {el.question}
+          {number}. {question}
         </h3>
-        <label
-          className={
-            el.action && el.selectedAnswer === "a" ? "isTrue" : "isFalse"
-          }
+        <section
+          className={testAnswer(selectedAnswer, action, correctAnswer, "a")}
         >
-          {" A. " + el.answerA}
-        </label>
-        <label
-          className={
-            el.action && el.selectedAnswer === "b" ? "isTrue" : "isFalse"
-          }
+          A. {answerA}
+          {selectText(correctAnswer, selectedAnswer, "a")}
+        </section>
+        <section
+          className={testAnswer(selectedAnswer, action, correctAnswer, "b")}
         >
-          {" B.  " + el.answerB}
-        </label>
-        <label
-          className={
-            el.action && el.selectedAnswer === "c" ? "isTrue" : "isFalse"
-          }
+          B. {answerB}
+          {selectText(correctAnswer, selectedAnswer, "b")}
+        </section>
+        <section
+          className={testAnswer(selectedAnswer, action, correctAnswer, "c")}
         >
-          {" C.  " + el.answerC}
-        </label>
-        <label
-          className={
-            el.action && el.selectedAnswer === "d" ? "isTrue" : "isFalse"
-          }
+          C. {answerC}
+          {selectText(correctAnswer, selectedAnswer, "c")}
+        </section>
+        <section
+          className={testAnswer(selectedAnswer, action, correctAnswer, "d")}
         >
-          {" D.  " + el.answerD}
-        </label>
+          D. {answerD} {selectText(correctAnswer, selectedAnswer, "d")}
+        </section>
       </div>
     );
   });
   return (
     <>
+      <h3 style={{ textAlign: "center", fontSize: 20, marginTop: 20 }}>
+        TWÓJ WYNIK: {score}/5
+      </h3>
       {table}
-      <button onClick={props.button}>Nowy test</button>
+      <Button click={props.button} text={"Rozpocznij nowy test"} />
     </>
   );
 };

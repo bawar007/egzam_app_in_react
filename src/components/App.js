@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 
 import "../styles/App.css";
+import "../styles/Tested.css";
 import Navigation from "./layouts/Navigation";
 import Test from "./layouts/Test";
 import ResultTest from "./layouts/ResultTest";
+import Button from "./layouts/Buttons";
 
 class App extends Component {
   state = {
@@ -31,66 +33,55 @@ class App extends Component {
   };
 
   handleChange = (e) => {
-    const table = this.state.tableSended;
+    const table = [...this.state.tableSended];
 
-    const a = table.map((el) => {
-      if (el.id === e.target.name && el.correctAnswer === e.target.value) {
+    const newTable = table.map((el) => {
+      const { name, value } = e.target;
+      if (el.id === name && el.correctAnswer === value) {
         return {
-          id: el.id,
-          question: el.question,
-          answerA: el.answerA,
-          answerB: el.answerB,
-          answerC: el.answerC,
-          answerD: el.answerD,
-          correctAnswer: el.correctAnswer,
-          selectedAnswer: e.target.value,
+          ...el,
+          selectedAnswer: value,
           action: true,
         };
-      } else if (el.id === e.target.name) {
+      } else if (el.id === name) {
         return {
-          id: el.id,
-          question: el.question,
-          answerA: el.answerA,
-          answerB: el.answerB,
-          answerC: el.answerC,
-          answerD: el.answerD,
-          correctAnswer: el.correctAnswer,
-          selectedAnswer: e.target.value,
+          ...el,
+          selectedAnswer: value,
           action: false,
         };
       } else {
         return el;
       }
     });
-
     this.setState({
-      tableSended: a,
+      tableSended: newTable,
     });
-    console.log(this.state.tableSended);
   };
 
-  handelSubmit = (e) => {
+  handelSubmit = () => {
     this.setState({
       form: true,
     });
   };
 
   render() {
+    const { form, tableSended } = this.state;
     return (
       <div className="App">
         <Navigation />
-        {this.state.form ? (
-          <ResultTest
-            button={this.handleClickRestart}
-            table={this.state.tableSended}
-          />
+        {form ? (
+          <ResultTest button={this.handleClickRestart} table={tableSended} />
         ) : (
           <div className="testApp">
-            <Test table={this.state.tableSended} click={this.handleChange} />
-            <button className="btn" onClick={this.handelSubmit}>
-              Wyślij
-            </button>
-            <button onClick={this.handleClickRestart}>Nowy test</button>
+            <Test table={tableSended} click={this.handleChange} />
+            {tableSended.length === 0 ? (
+              <Button
+                text={"Rozpocznij nowy test"}
+                click={this.handleClickRestart}
+              />
+            ) : (
+              <Button text={"Wyślij"} click={this.handelSubmit} />
+            )}
           </div>
         )}
       </div>

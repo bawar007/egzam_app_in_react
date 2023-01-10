@@ -7,9 +7,7 @@ const Test = (props) => {
     number = number + 1;
     return (
       <div key={el.id} className="test">
-        <h3>
-          {number}. {el.question}
-        </h3>
+        <h3>{number + ". " + el.question}</h3>
         <label className={el.selectedAnswer === "a" ? "isChecked" : null}>
           <input type="radio" name={el.id} value="a" onChange={props.click} />
           {" A. " + el.answerA}

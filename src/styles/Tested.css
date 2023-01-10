@@ -1,6 +1,64 @@
-label.isTrue{
-    background-color: green;
+.result_test{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-top: 5px solid yellow;
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
 }
-label.isFalse{
+
+.visibility{
+    visibility: hidden;
+}
+
+.result_test section.isTrue{
+    background-color: green;
+    border-left-color: green;
+}
+
+.result_test section.isFalse{
     background-color: red;
+    border-left-color: red;
+}
+
+.result_test section {
+    min-height: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    background: #172227;
+    border-left: 10px solid #172227;
+    color: white;
+    margin-bottom: 2px;
+}
+
+.result_test h3{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    background-color: #172227;
+    color: white;
+    border-bottom: 5px solid yellow;
+    font-size: smaller;
+}
+
+.result_test section.good{
+    background-color: rgba(0, 128, 0, 0.4);
+    border-left-color: green;
+}
+
+.result_test section.noChecked{
+    background-color: #172227d8;
+}
+
+.result_test section.noValue{
+    border-left-color: red;
+}
+
+.result_test section em{
+    margin-left: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
 }
