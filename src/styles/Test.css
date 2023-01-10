@@ -8,19 +8,26 @@
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 10px;
-    background-color: aqua;
+    background: #172227;
+    border-left: 10px solid #172227;
+    color: white;
+}
+
+.test h3{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    background-color: #172227;
+    color: white;
 }
 
 .test label:hover{
-    background-color: red;
-}
-.test label:nth-child(){
-    border-bottom: 2px solid black;
-}
-.test label input:nth-last-child(){
-    border-bottom: 2px solid black;
+    opacity: 0.6;
+    border-left-color: orange ;
+    cursor: pointer;
 }
 
-.test label input{
-    margin-left: 10px;
+.test label.isChecked{
+    border-left-color: green;
+    background-color: rgb(46, 96, 46);
 }

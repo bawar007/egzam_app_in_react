@@ -1,0 +1,8 @@
+.App .testApp{
+    margin-top: 50px;
+}
+
+.testApp .btn{
+    padding: 20px;
+    background-color: white;
+}

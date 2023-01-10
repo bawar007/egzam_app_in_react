@@ -1,7 +1,6 @@
-.good{
+label.isTrue{
     background-color: green;
 }
-
-.bad{
+label.isFalse{
     background-color: red;
 }

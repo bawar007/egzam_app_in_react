@@ -2,33 +2,34 @@ import React from "react";
 import "../../styles/Test.css";
 const Test = (props) => {
   let number = 0;
-  const fon = props.table.map((el) => {
+  const table = props.table;
+  const fon = table.map((el) => {
     number = number + 1;
     return (
       <div key={el.id} className="test">
         <h3>
-          {number}. {el.tresc}
+          {number}. {el.question}
         </h3>
-        <label>
+        <label className={el.selectedAnswer === "a" ? "isChecked" : null}>
           <input type="radio" name={el.id} value="a" onChange={props.click} />
-          {"  " + el.odpa}
+          {" A. " + el.answerA}
         </label>
-        <label>
+        <label className={el.selectedAnswer === "b" ? "isChecked" : null}>
           <input type="radio" name={el.id} value="b" onChange={props.click} />
-          {"  " + el.odpb}
+          {" B.  " + el.answerB}
         </label>
-        <label>
+        <label className={el.selectedAnswer === "c" ? "isChecked" : null}>
           <input type="radio" name={el.id} value="c" onChange={props.click} />
-          {"  " + el.odpc}
+          {" C.  " + el.answerC}
         </label>
-        <label>
+        <label className={el.selectedAnswer === "d" ? "isChecked" : null}>
           <input type="radio" name={el.id} value="d" onChange={props.click} />
-          {"  " + el.odpd}
+          {" D.  " + el.answerD}
         </label>
       </div>
     );
   });
-  return <div>{fon}</div>;
+  return <>{fon}</>;
 };
 
 export default Test;
