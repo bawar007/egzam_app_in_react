@@ -90,6 +90,7 @@ class App extends Component {
             button={this.handleClickRestart}
             table={tableSended[currentQuestion]}
             currentQ={currentQuestion}
+            nextQuestion={this.handleShow}
           />
         ) : (
           <div className="testApp">
@@ -104,15 +105,11 @@ class App extends Component {
                 click={this.handleChange}
                 currentQ={currentQuestion}
                 submit={this.handelSubmit}
+                nextQuestion={this.handleShow}
               />
             )}
           </div>
         )}
-
-        <div style={{ marginBottom: 20 }}>
-          <button onClick={this.handleShow.bind(this, "back")}>Back</button>
-          <button onClick={this.handleShow.bind(this, "next")}>Next</button>
-        </div>
       </div>
     );
   }

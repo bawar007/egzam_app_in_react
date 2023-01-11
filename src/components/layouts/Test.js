@@ -23,7 +23,11 @@ const Test = (props) => {
         <input type="radio" name={table.id} value="d" onChange={props.click} />
         {" D.  " + table.answerD}
       </label>
-      <Button click={props.submit} text="wyślij" />
+      <div className="buttons">
+        <Button click={props.nextQuestion.bind(this, "back")} text="back" />
+        <Button click={props.submit} text="wyślij" />
+        <Button click={props.nextQuestion.bind(this, "next")} text="next" />
+      </div>
     </div>
   );
   return <>{fon}</>;

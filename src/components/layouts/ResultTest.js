@@ -77,7 +77,11 @@ const Tested = (props) => {
     <>
       <h3 className={"score"}>TWÓJ WYNIK: {score}/5</h3>
       {table()}
-      <Button click={props.button} text={"Rozpocznij nowy test"} />
+      <div className="buttons">
+        <Button click={props.nextQuestion.bind(this, "back")} text="back" />
+        <Button click={props.button} text={"Rozpocznij nowy test"} />
+        <Button click={props.nextQuestion.bind(this, "next")} text="next" />
+      </div>
     </>
   );
 };
