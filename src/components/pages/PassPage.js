@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 
-import "../styles/App.css";
-import "../styles/Tested.css";
-import Navigation from "./layouts/Navigation";
-import Test from "./layouts/Test";
-import ResultTest from "./layouts/ResultTest";
-import Button from "./layouts/Buttons";
+import ResultTest from "../pass_componenst/PassResult";
+import Test from "../pass_componenst/PassInProgress";
+import Button from "../Buttons";
 
-class App extends Component {
+class PassPage extends Component {
   state = {
     form: false,
     tableSended: [],
@@ -82,9 +79,9 @@ class App extends Component {
 
   render() {
     const { form, tableSended, currentQuestion } = this.state;
+
     return (
-      <div className="App">
-        <Navigation />
+      <div className="Pass">
         {form ? (
           <ResultTest
             button={this.handleClickRestart}
@@ -115,4 +112,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default PassPage;

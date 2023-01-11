@@ -1,6 +1,8 @@
 import React from "react";
 
-import Button from "../layouts/Buttons";
+import "../../styles/PassResult.css";
+
+import Button from "../Buttons";
 const Tested = (props) => {
   let score = 0;
   const testAnswer = (selectedA, action, correctA, value) => {

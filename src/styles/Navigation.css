@@ -1,15 +1,20 @@
 .App .navigation{
-    list-style-type: none;
-    display: flex;
     text-align: center;
     font-size: 20px;
-    flex-wrap: wrap;
-    position: fixed;
-    top: 0;
-    width: 90%;
 }
+.navigation ul{
+    display: flex;
+    list-style: none;
+}
+
 .navigation li{
     width: 25%;
+    min-height: 45px;
+}
+
+.navigation li a {
+    display: block;
+    text-decoration: none;
     background-color: black;
     padding-top: 10px;
     padding-bottom: 6px;
@@ -18,8 +23,9 @@
     color: white;
 }
 
-.navigation li:hover{
+.navigation li a:hover{
     cursor: pointer;
     border-bottom-color: yellow;
     color: yellow;
 }
+
