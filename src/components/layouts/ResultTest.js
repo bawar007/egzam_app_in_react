@@ -2,7 +2,6 @@ import React from "react";
 
 import Button from "../layouts/Buttons";
 const Tested = (props) => {
-  let number = 0;
   let score = 0;
   const testAnswer = (selectedA, action, correctA, value) => {
     if (selectedA === value) {
@@ -30,8 +29,7 @@ const Tested = (props) => {
       return <em>Twoja odpowiedź była poprawna</em>;
     }
   };
-  const table = props.table.map((el) => {
-    number = number + 1;
+  const table = () => {
     const {
       selectedAnswer,
       action,
@@ -42,12 +40,12 @@ const Tested = (props) => {
       answerB,
       answerC,
       answerD,
-    } = el;
+    } = props.table;
 
     return (
       <div key={id} className="result_test">
         <h3>
-          {number}. {question}
+          {props.currentQ + 1}. {question}
         </h3>
         <section
           className={testAnswer(selectedAnswer, action, correctAnswer, "a")}
@@ -74,13 +72,11 @@ const Tested = (props) => {
         </section>
       </div>
     );
-  });
+  };
   return (
     <>
-      <h3 style={{ textAlign: "center", fontSize: 20, marginTop: 20 }}>
-        TWÓJ WYNIK: {score}/5
-      </h3>
-      {table}
+      <h3 className={"score"}>TWÓJ WYNIK: {score}/5</h3>
+      {table()}
       <Button click={props.button} text={"Rozpocznij nowy test"} />
     </>
   );

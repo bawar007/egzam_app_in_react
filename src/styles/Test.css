@@ -15,6 +15,7 @@
     border-left: 10px solid #172227;
     color: white;
     font-size: 20px;
+    transition: .2s;
 }
 
 .test label input{
