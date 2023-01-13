@@ -10,11 +10,14 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navigation />
+        <nav className="nav">
+          <Navigation />
+        </nav>
+
         <div className="page">
           <Page />
         </div>
-        <footer>
+        <footer className="footer">
           <Footer />
         </footer>
       </div>

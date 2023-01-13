@@ -92,10 +92,7 @@ class PassPage extends Component {
         ) : (
           <div className="testApp">
             {tableSended.length === 0 ? (
-              <Button
-                text={"Rozpocznij nowy test"}
-                click={this.handleClickRestart}
-              />
+              <Button text={"nowy test"} click={this.handleClickRestart} />
             ) : (
               <Test
                 table={tableSended[currentQuestion]}

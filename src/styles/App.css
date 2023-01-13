@@ -1,18 +1,38 @@
 .App{
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0 auto;
+    width: 90%;
 }
 
-.App .testApp{
-    margin-top: 50px;
+.App .page{
+    flex-grow: 1;
+    padding: 30px 0;
+    text-align: center;
+    color: white;
+}
+
+.App .nav{
+    min-height: 75px;
+}
+
+.App .footer{
+    padding: 10px 0;
+    background-color: aqua;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .buttons{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .btn{
     background-color: white;
     width: 20%;
+    min-width: 170px;
     font-size: 24px;
     height: 60px;
     margin-top: 20px;
@@ -24,9 +44,3 @@
     background-color: green;
 }
 
-.App .page{
-    height: 70vh;
-}
-.App footer{
-    height: 40px;
-}

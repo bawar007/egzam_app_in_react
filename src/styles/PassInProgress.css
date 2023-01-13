@@ -4,6 +4,7 @@
     box-sizing: border-box;
     border-top: 5px solid yellow;
     font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
 }
 
 .test label{
@@ -13,7 +14,6 @@
     padding-left: 10px;
     background: #172227;
     border-left: 10px solid #172227;
-    color: white;
     font-size: 20px;
     transition: .2s;
 }
@@ -27,7 +27,6 @@
     padding-bottom: 20px;
     padding-left: 20px;
     background-color: #172227;
-    color: white;
 }
 
 .test label:hover{

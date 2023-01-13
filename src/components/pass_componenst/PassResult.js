@@ -4,11 +4,9 @@ import "../../styles/PassResult.css";
 
 import Button from "../Buttons";
 const Tested = (props) => {
-  let score = 0;
   const testAnswer = (selectedA, action, correctA, value) => {
     if (selectedA === value) {
       if (action) {
-        score = score + 1;
         return "isTrue";
       } else {
         return "isFalse";
@@ -77,12 +75,12 @@ const Tested = (props) => {
   };
   return (
     <>
-      <h3 className={"score"}>TWÓJ WYNIK: {score}/5</h3>
+      <h3 className={"score"}>TWÓJ WYNIK: /5</h3>
       {table()}
       <div className="buttons">
         <Button click={props.nextQuestion.bind(this, "back")} text="back" />
-        <Button click={props.button} text={"Rozpocznij nowy test"} />
         <Button click={props.nextQuestion.bind(this, "next")} text="next" />
+        <Button click={props.button} text={"nowy test"} />
       </div>
     </>
   );

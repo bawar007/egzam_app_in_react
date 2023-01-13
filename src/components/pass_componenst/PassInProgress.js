@@ -30,8 +30,8 @@ const Test = (props) => {
       </label>
       <div className="buttons">
         <Button click={nextQuestion.bind(this, "back")} text="back" />
-        <Button click={submit} text="wyślij" />
         <Button click={nextQuestion.bind(this, "next")} text="next" />
+        <Button click={submit} text="wyślij" />
       </div>
     </div>
   );
