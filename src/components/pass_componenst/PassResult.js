@@ -3,7 +3,7 @@ import React from "react";
 import "../../styles/PassResult.css";
 
 import Button from "../Buttons";
-const Tested = (props) => {
+const PassResult = (props) => {
   const testAnswer = (selectedA, action, correctA, value) => {
     if (selectedA === value) {
       if (action) {
@@ -43,7 +43,7 @@ const Tested = (props) => {
     } = props.table;
 
     return (
-      <div key={id} className="result_test">
+      <div key={id} className="pass_result">
         <h3>
           {props.currentQ + 1}. {question}
         </h3>
@@ -86,4 +86,4 @@ const Tested = (props) => {
   );
 };
 
-export default Tested;
+export default PassResult;

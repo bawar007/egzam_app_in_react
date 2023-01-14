@@ -1,39 +1,39 @@
-.result_test{
+.Pass{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.pass_result{
     box-sizing: border-box;
     border-top: 5px solid yellow;
     margin-top: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
     text-align: left;
 }
 
 .score{
     text-align: center;
-    font-size: 20px;
-    margin-top: 60px;
 }
 
-.result_test section.isTrue{
+.pass_result section.isTrue{
     background-color: green;
     border-left-color: green;
 }
 
-.result_test section.isFalse{
+.pass_result section.isFalse{
     background-color: hsla(2, 96%, 52%, 0.35);
     border-left-color: #ff000079;
 }
 
-.result_test section {
+.pass_result section {
     min-height: 40px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px 0;
     padding-left: 10px;
     background: #172227;
     border-left: 10px solid #172227;
     margin-bottom: 2px;
 }
 
-.result_test h3{
+.pass_result h3{
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 20px;
@@ -42,22 +42,22 @@
     font-size: smaller;
 }
 
-.result_test section.good{
+.pass_result section.good{
     background-color: rgba(0, 128, 0);
     border-left-color: green;
 }
 
-.result_test section.noChecked{
+.pass_result section.noChecked{
     background-color: #172227d8;
 }
 
-.result_test section.noValue{
+.pass_result section.noValue{
     border-left-color: red;
     background-color: #601717;
     opacity: 0.5;
 }
 
-.result_test section em{
+.pass_result section em{
     margin-left: 50px;
     font-weight: bold;
     font-size: 14px;

@@ -1,4 +1,4 @@
-.test{
+.pass_in_progress{
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -7,7 +7,7 @@
     text-align: left;
 }
 
-.test label{
+.pass_in_progress label{
     min-height: 40px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -18,24 +18,24 @@
     transition: .2s;
 }
 
-.test label input{
+.pass_in_progress label input{
     display: none;
 }
 
-.test h3{
+.pass_in_progress h3{
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 20px;
     background-color: #172227;
 }
 
-.test label:hover{
+.pass_in_progress label:hover{
     opacity: 0.6;
     border-left-color: orange ;
     cursor: pointer;
 }
 
-.test label.isChecked{
+.pass_in_progress label.isChecked{
     border-left-color: green;
     background-color: rgb(46, 96, 46);
 }

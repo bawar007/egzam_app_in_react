@@ -4,13 +4,13 @@ import "../../styles/PassInProgress.css";
 
 import Button from "../Buttons";
 
-const Test = (props) => {
+const PassInProgress = (props) => {
   const { id, question, selectedAnswer, answerA, answerB, answerC, answerD } =
     props.table;
   const { click, nextQuestion, submit, currentQ } = props;
 
   const fon = (
-    <div key={id} className="test">
+    <div key={id} className="pass_in_progress">
       <h3>{currentQ + 1 + ". " + question}</h3>
       <label className={selectedAnswer === "a" ? "isChecked" : null}>
         <input type="radio" name={id} value="a" onChange={click} />
@@ -38,4 +38,4 @@ const Test = (props) => {
   return <>{fon}</>;
 };
 
-export default Test;
+export default PassInProgress;

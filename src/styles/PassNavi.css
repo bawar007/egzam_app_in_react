@@ -1,0 +1,29 @@
+.pass_navi{
+    margin-bottom: 10px;
+}
+.pass_navi ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.pass_navi ul li {
+    min-height: 30px;
+    min-width: 30px;
+    width: 5%;
+    padding: 10px 0;
+    background-color: black;
+    border: 1px solid white;
+    border-bottom: 2px solid white;
+}
+
+.pass_navi ul li:hover{
+    cursor: pointer;
+    border-bottom-color: yellow;
+    color: yellow;
+}
+
+.pass_navi .activeNav{
+    border-color: yellow;
+    color: yellow;
+}
