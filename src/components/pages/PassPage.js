@@ -5,11 +5,14 @@ import PassInProgress from "../pass_componenst/PassInProgress";
 import Button from "../Buttons";
 import PassNavi from "../../components/pass_componenst/PassNavi";
 
+import { AppContext } from "../pass_componenst/provider";
+
 function PassPage() {
   const [newState, setState] = useState({
     form: false,
     tableSended: [],
     currentQuestion: 0,
+    items: 1,
   });
 
   const handleClickRestart = () => {
@@ -23,9 +26,16 @@ function PassPage() {
       .then((response) => response.json())
       .then((data) => {
         let table = data;
-        table.sort(() => Math.random() * 11 - Math.random() * 10).splice(5);
-        setState(() => {
-          return { tableSended: table, form: false, currentQuestion: 0 };
+        table
+          .sort(() => Math.random() * 11 - Math.random() * 10)
+          .splice(newState.items);
+        setState((prevState) => {
+          return {
+            ...prevState,
+            tableSended: table,
+            form: false,
+            currentQuestion: 0,
+          };
         });
       })
       .catch();
@@ -57,7 +67,7 @@ function PassPage() {
     });
   };
 
-  const handelSubmit = () => {
+  const handleSubmit = () => {
     setState((prevState) => {
       return { ...prevState, form: true, currentQuestion: 0 };
     });
@@ -65,7 +75,7 @@ function PassPage() {
 
   const handleShow = (e) => {
     let currentQuestion = newState.currentQuestion;
-    if (e === "next" && currentQuestion < 4) {
+    if (e === "next" && currentQuestion < newState.items - 1) {
       currentQuestion = currentQuestion + 1;
     } else if (e === "back" && currentQuestion > 0) {
       currentQuestion = currentQuestion - 1;
@@ -81,47 +91,63 @@ function PassPage() {
     });
   };
 
-  const { form, tableSended, currentQuestion } = newState;
+  const handleChangeNumber = (e) => {
+    const number = Number(e.target.value);
+    if (number >= 1 && number <= 14) {
+      setState((prevState) => {
+        return { ...prevState, items: number };
+      });
+    }
+  };
+
+  const { form, tableSended, currentQuestion, items } = newState;
 
   return (
-    <div className="Pass">
-      {form ? (
-        <>
-          <PassNavi
-            click={handleNavi}
-            number={tableSended.length}
-            currentQ={currentQuestion}
-          />
-          <PassResult
-            button={handleClickRestart}
-            table={tableSended[currentQuestion]}
-            currentQ={currentQuestion}
-            nextQuestion={handleShow}
-          />
-        </>
-      ) : (
-        <div className="testApp">
-          {tableSended.length === 0 ? (
-            <Button text={"nowy test"} click={handleClickRestart} />
-          ) : (
-            <>
-              <PassNavi
-                click={handleNavi}
-                number={tableSended.length}
-                currentQ={currentQuestion}
-              />
-              <PassInProgress
-                table={tableSended[currentQuestion]}
-                click={handleChange}
-                currentQ={currentQuestion}
-                submit={handelSubmit}
-                nextQuestion={handleShow}
-              />
-            </>
-          )}
-        </div>
-      )}
-    </div>
+    <AppContext.Provider
+      value={{
+        handleNavi,
+        handleShow,
+        handleChange,
+        handleSubmit,
+        handleClickRestart,
+        handleChangeNumber,
+        currentQ: currentQuestion,
+        table: tableSended[currentQuestion],
+        tableLength: tableSended.length,
+        items,
+      }}
+    >
+      <div className="Pass">
+        {form ? (
+          <>
+            <PassNavi />
+            <PassResult />
+          </>
+        ) : (
+          <div className="testApp">
+            {tableSended.length === 0 ? (
+              <>
+                Ile pytań pokazać ?
+                <input
+                  type="number"
+                  value={items}
+                  onChange={handleChangeNumber}
+                  min="1"
+                  max="14"
+                  defaultValue="1"
+                />
+                <Button text={"nowy test"} click={handleClickRestart} />
+              </>
+            ) : (
+              <>
+                <PassNavi />
+                <PassInProgress />
+              </>
+            )}
+          </div>
+        )}
+      </div>
+    </AppContext.Provider>
   );
 }
 

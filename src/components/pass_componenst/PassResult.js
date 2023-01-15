@@ -1,9 +1,40 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 
 import "../../styles/PassResult.css";
 
 import Button from "../Buttons";
-const PassResult = (props) => {
+import { AppContext } from "./provider";
+
+const PassResult = () => {
+  const [settings, setSetting] = useState(false);
+
+  const showSetting = () => {
+    setSetting(() => !settings);
+  };
+
+  const {
+    handleClickRestart,
+    table,
+    currentQ,
+    handleShow,
+    items,
+    handleChangeNumber,
+  } = useContext(AppContext);
+
+  const {
+    selectedAnswer,
+    action,
+    correctAnswer,
+    id,
+    question,
+    answerA,
+    answerB,
+    answerC,
+    answerD,
+  } = table;
+
+  let score = 0;
+
   const testAnswer = (selectedA, action, correctA, value) => {
     if (selectedA === value) {
       if (action) {
@@ -29,23 +60,33 @@ const PassResult = (props) => {
       return <em>Twoja odpowiedź była poprawna</em>;
     }
   };
-  const table = () => {
-    const {
-      selectedAnswer,
-      action,
-      correctAnswer,
-      id,
-      question,
-      answerA,
-      answerB,
-      answerC,
-      answerD,
-    } = props.table;
 
-    return (
+  return (
+    <>
+      <h3 className="score">TWÓJ WYNIK: {score}/5</h3>
+      <div className="changeNumbers">
+        <button onClick={showSetting} className="btn" style={{ fontSize: 14 }}>
+          {settings ? "Ukryj ustawienia" : "Pokaż ustawienia"}
+        </button>
+        {settings ? (
+          <div className="setting">
+            Wybierz ilość pytań:
+            <input
+              type="number"
+              value={items}
+              onChange={handleChangeNumber}
+              min="1"
+              max="14"
+              defaultValue="1"
+            />
+            <br />
+            <Button text="Zaakceptuj" click={handleClickRestart} />
+          </div>
+        ) : null}
+      </div>
       <div key={id} className="pass_result">
         <h3>
-          {props.currentQ + 1}. {question}
+          {currentQ + 1}. {question}
         </h3>
         <section
           className={testAnswer(selectedAnswer, action, correctAnswer, "a")}
@@ -71,16 +112,10 @@ const PassResult = (props) => {
           D. {answerD} {selectText(correctAnswer, selectedAnswer, "d")}
         </section>
       </div>
-    );
-  };
-  return (
-    <>
-      <h3 className={"score"}>TWÓJ WYNIK: /5</h3>
-      {table()}
       <div className="buttons">
-        <Button click={props.nextQuestion.bind(this, "back")} text="back" />
-        <Button click={props.nextQuestion.bind(this, "next")} text="next" />
-        <Button click={props.button} text={"nowy test"} />
+        <Button click={handleShow.bind(this, "back")} text="back" />
+        <Button click={handleShow.bind(this, "next")} text="next" />
+        <Button click={handleClickRestart} text={"nowy test"} />
       </div>
     </>
   );

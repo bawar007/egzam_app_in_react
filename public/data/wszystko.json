@@ -8,8 +8,7 @@
     "answerD":"przywraca system na podstawie kopii zapasowej.",
     "correctAnswer":"d",
     "selectedAnswer": "",
-    "action": false,
-    "visibility": true
+    "action": false
 },
 {
     "id":"2",
@@ -20,8 +19,7 @@
     "answerD":"modelowanie skanera.",
     "correctAnswer":"a",
     "selectedAnswer": "",
-    "action": false,
-    "visibility": false
+    "action": false
 },
 {
     "id":"3",
@@ -32,8 +30,7 @@
     "answerD":"CACHE",
     "correctAnswer":"d",
     "selectedAnswer": "",
-    "action": false,
-    "visibility": false
+    "action": false
 },
 {
     "id":"4",
@@ -44,8 +41,7 @@
     "answerD":"AMD APU A8 7650K 3300MHz FM2+ BOX",
     "correctAnswer":"c",
     "selectedAnswer": "",
-    "action": false,
-    "visibility": false
+    "action": false
 },
 {
     "id":"5",
@@ -56,8 +52,7 @@
     "answerD":"tmp",
     "correctAnswer":"c",
     "selectedAnswer": "",
-    "action": false,
-    "visibility": false
+    "action": false
 },
 {
     "id":"6",
@@ -65,8 +60,7 @@
     "answerA":"wykonać przyrostową kopię zapasową plików systemowych.","answerB":"chronić dane przez szyfrowanie plików.","answerC":"usunąć konto użytkownika wraz z jego profilem oraz dokumentami.",
     "answerD":"przeskanować system w poszukiwania malware.","correctAnswer":"b",
     "selectedAnswer": "",
-    "action": false,
-    "visibility": false
+    "action": false
 },
 {
     "id":"7",
@@ -77,8 +71,7 @@
     "answerD":"600 × 900",
     "correctAnswer":"c",
     "selectedAnswer": "",
-    "action": false,
-    "visibility": false
+    "action": false
 },
 {
     "id":"8",
@@ -89,8 +82,7 @@
     "answerD":"cp",
     "correctAnswer":"a",
     "selectedAnswer": "",
-    "action": false,
-    "visibility": false
+    "action": false
 },
 {
     "id":"9",
@@ -112,8 +104,7 @@
     "answerD":"lzma",
     "correctAnswer":"a",
     "selectedAnswer": "",
-    "action": false,
-    "visibility": false
+    "action": false
 },
 {
     "id":"11",
@@ -123,8 +114,7 @@
     "answerD":"7(H)",
     "correctAnswer":"b",
     "selectedAnswer": "",
-    "action": false,
-    "visibility": false
+    "action": false
 },
 {
     "id":"12",
@@ -135,8 +125,7 @@
     "answerD":"postcardware.",
     "correctAnswer":"b",
     "selectedAnswer": "",
-    "action": false,
-    "visibility": false
+    "action": false
 },
 {
     "id":"13",
@@ -145,8 +134,7 @@
     "answerB":"niewielką liczbą trybów adresowania.","answerC":"ograniczaną komunikacją pomiędzy pamięcią a procesorem.",
     "answerD":"prostą i szybką jednostką sterującą.\r\n","correctAnswer":"a",
     "selectedAnswer": "",
-    "action": false,
-    "visibility": false
+    "action": false
 },
 {
     "id":"14",
@@ -157,7 +145,6 @@
     "answerD":"GNU GPL",
     "correctAnswer":"d",
     "selectedAnswer": "",
-    "action": false,
-    "visibility": false
+    "action": false
 }
 ]

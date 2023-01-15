@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../styles/PassNavi.css";
 
-const PassNavi = (props) => {
-  const { currentQ, number, click } = props;
+import { AppContext } from "./provider";
+
+const PassNavi = () => {
+  const { handleNavi, currentQ, tableLength } = useContext(AppContext);
   const n = [];
   const navi = () => {
-    for (let index = 0; index < number; index++) {
+    for (let index = 0; index < tableLength; index++) {
       n.push(
         <li
-          onClick={click.bind(this, index)}
+          key={index}
+          onClick={handleNavi.bind(this, index)}
           className={currentQ === index ? "activeNav" : null}
         >
           {index + 1}
