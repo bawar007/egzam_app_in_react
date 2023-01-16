@@ -4,28 +4,29 @@ import "../../styles/PassNavi.css";
 import { AppContext } from "./provider";
 
 const PassNavi = () => {
-  const { handleNavi, currentQ, tableLength } = useContext(AppContext);
-  const n = [];
-  const navi = () => {
-    for (let index = 0; index < tableLength; index++) {
-      n.push(
-        <li
-          key={index}
-          onClick={handleNavi.bind(this, index)}
-          className={currentQ === index ? "activeNav" : null}
-        >
-          {index + 1}
-        </li>
-      );
-    }
-  };
-
-  navi();
-  const naviList = n.map((el) => el);
+  const { handleNavi, currentQ, tableSended } = useContext(AppContext);
+  const n = [...tableSended];
+  const naviList = n.map((el, index) => {
+    return (
+      <li
+        key={el.id}
+        onClick={handleNavi.bind(this, index)}
+        className={
+          currentQ === index
+            ? "activeNav"
+            : el.action
+            ? "goodAnswer"
+            : "badAnswer"
+        }
+      >
+        {index + 1}
+      </li>
+    );
+  });
 
   return (
     <div className="pass_navi">
-      <ul>{naviList}</ul>
+      <ul className="pass_navi_list">{naviList}</ul>
     </div>
   );
 };

@@ -1,29 +1,40 @@
-.pass_navi{
-    margin-bottom: 10px;
-}
-.pass_navi ul{
+.pass_navi_list{
+    list-style: none;
     display: flex;
     flex-wrap: wrap;
-    list-style: none;
+    text-align: center;
 }
 
-.pass_navi ul li {
-    min-height: 30px;
-    min-width: 30px;
+.pass_navi_list li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px;
+    min-width: 40px;
     width: 5%;
-    padding: 10px 0;
+    height: 50px;
     background-color: black;
     border: 1px solid white;
     border-bottom: 2px solid white;
 }
 
-.pass_navi ul li:hover{
+.pass_navi_list li:hover{
     cursor: pointer;
     border-bottom-color: yellow;
     color: yellow;
 }
 
-.pass_navi .activeNav{
+.pass_navi_list .activeNav{
     border-color: yellow;
     color: yellow;
+}
+
+.pass_result .pass_navi_list .goodAnswer{
+    border-color: green;
+    color: green;
+}
+
+.pass_result .pass_navi_list .badAnswer{
+    border-color: red;
+    color: red;
 }

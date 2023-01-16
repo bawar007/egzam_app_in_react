@@ -4,6 +4,7 @@ import "../../styles/PassResult.css";
 
 import Button from "../Buttons";
 import { AppContext } from "./provider";
+import PassNavi from "../../components/pass_componenst/PassNavi";
 
 const PassResult = () => {
   const [settings, setSetting] = useState(false);
@@ -14,7 +15,7 @@ const PassResult = () => {
 
   const {
     handleClickRestart,
-    table,
+    tableSended,
     currentQ,
     handleShow,
     items,
@@ -31,41 +32,41 @@ const PassResult = () => {
     answerB,
     answerC,
     answerD,
-  } = table;
+  } = tableSended[currentQ];
 
   let score = 0;
 
-  const testAnswer = (selectedA, action, correctA, value) => {
-    if (selectedA === value) {
+  const testAnswer = (value) => {
+    if (selectedAnswer === value) {
       if (action) {
-        return "isTrue";
+        return "goodA";
       } else {
         return "isFalse";
       }
-    } else if (correctA === value) {
-      return "good";
-    } else if (correctA === value) {
+    } else if (correctAnswer === value) {
+      return "goodA";
+    } else if (correctAnswer === value) {
       return "noChecked";
     } else {
       return "noValue";
     }
   };
 
-  const selectText = (correctA, selectedA, value) => {
-    if (correctA === value && correctA !== selectedA) {
+  const selectText = (value) => {
+    if (correctAnswer === value && correctAnswer !== selectedAnswer) {
       return <em>Poprawna odpowiedź</em>;
-    } else if (value === selectedA && correctA !== value) {
+    } else if (value === selectedAnswer && correctAnswer !== value) {
       return <em>Twoja odpowiedź była zła</em>;
-    } else if (selectedA === correctA && correctA === value) {
+    } else if (selectedAnswer === correctAnswer && correctAnswer === value) {
       return <em>Twoja odpowiedź była poprawna</em>;
     }
   };
 
   return (
-    <>
-      <h3 className="score">TWÓJ WYNIK: {score}/5</h3>
-      <div className="changeNumbers">
-        <button onClick={showSetting} className="btn" style={{ fontSize: 14 }}>
+    <div key={id} className="pass_result">
+      <PassNavi />
+      <div className="pass_result_changeAnswers">
+        <button onClick={showSetting} className="btn">
           {settings ? "Ukryj ustawienia" : "Pokaż ustawienia"}
         </button>
         {settings ? (
@@ -76,48 +77,61 @@ const PassResult = () => {
               value={items}
               onChange={handleChangeNumber}
               min="1"
-              max="14"
-              defaultValue="1"
+              max="40"
             />
             <br />
             <Button text="Zaakceptuj" click={handleClickRestart} />
           </div>
         ) : null}
       </div>
-      <div key={id} className="pass_result">
+
+      <div className="pass_result_answer">
+        <h3 className="pass_result_score">TWÓJ WYNIK: {score}/5</h3>
         <h3>
           {currentQ + 1}. {question}
         </h3>
-        <section
-          className={testAnswer(selectedAnswer, action, correctAnswer, "a")}
-        >
+
+        <section className={testAnswer("a")}>
           A. {answerA}
-          {selectText(correctAnswer, selectedAnswer, "a")}
+          {selectText("a")}
         </section>
-        <section
-          className={testAnswer(selectedAnswer, action, correctAnswer, "b")}
-        >
+        <section className={testAnswer("b")}>
           B. {answerB}
-          {selectText(correctAnswer, selectedAnswer, "b")}
+          {selectText("b")}
         </section>
-        <section
-          className={testAnswer(selectedAnswer, action, correctAnswer, "c")}
-        >
+        <section className={testAnswer("c")}>
           C. {answerC}
-          {selectText(correctAnswer, selectedAnswer, "c")}
+          {selectText("c")}
         </section>
-        <section
-          className={testAnswer(selectedAnswer, action, correctAnswer, "d")}
-        >
-          D. {answerD} {selectText(correctAnswer, selectedAnswer, "d")}
+        <section className={testAnswer("d")}>
+          D. {answerD} {selectText("d")}
         </section>
       </div>
-      <div className="buttons">
-        <Button click={handleShow.bind(this, "back")} text="back" />
-        <Button click={handleShow.bind(this, "next")} text="next" />
-        <Button click={handleClickRestart} text={"nowy test"} />
+
+      <div className="pass_result_buttons">
+        <div className="buttons">
+          {currentQ === 0 ? (
+            <>
+              <Button click={handleShow.bind(this, "next")} text="next" />
+              <Button click={handleClickRestart} text={"nowy test"} />
+            </>
+          ) : currentQ === tableSended.length - 1 ? (
+            <>
+              <Button click={handleShow.bind(this, "back")} text="back" />
+              <Button click={handleClickRestart} text={"nowy test"} />
+            </>
+          ) : (
+            <>
+              <div>
+                <Button click={handleShow.bind(this, "back")} text="back" />
+                <Button click={handleShow.bind(this, "next")} text="next" />
+              </div>
+              <Button click={handleClickRestart} text={"nowy test"} />
+            </>
+          )}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import PassResult from "../pass_componenst/PassResult";
 import PassInProgress from "../pass_componenst/PassInProgress";
 import Button from "../Buttons";
-import PassNavi from "../../components/pass_componenst/PassNavi";
-
 import { AppContext } from "../pass_componenst/provider";
+
+import "../../styles/PassPage.css";
 
 function PassPage() {
   const [newState, setState] = useState({
@@ -16,7 +16,7 @@ function PassPage() {
   });
 
   const handleClickRestart = () => {
-    fetch("/data/wszystko.json")
+    fetch("/data/pass_table.json")
       .then((response) => {
         if (response.ok) {
           return response;
@@ -27,7 +27,11 @@ function PassPage() {
       .then((data) => {
         let table = data;
         table
-          .sort(() => Math.random() * 11 - Math.random() * 10)
+          .sort(
+            () =>
+              Math.random() * (newState.items + 1) -
+              Math.random() * newState.items
+          )
           .splice(newState.items);
         setState((prevState) => {
           return {
@@ -93,7 +97,7 @@ function PassPage() {
 
   const handleChangeNumber = (e) => {
     const number = Number(e.target.value);
-    if (number >= 1 && number <= 14) {
+    if (number >= 1 && number <= 40) {
       setState((prevState) => {
         return { ...prevState, items: number };
       });
@@ -112,39 +116,28 @@ function PassPage() {
         handleClickRestart,
         handleChangeNumber,
         currentQ: currentQuestion,
-        table: tableSended[currentQuestion],
-        tableLength: tableSended.length,
+        tableSended,
         items,
+        form,
       }}
     >
-      <div className="Pass">
+      <div className="pass_page">
         {form ? (
-          <>
-            <PassNavi />
-            <PassResult />
-          </>
-        ) : (
-          <div className="testApp">
-            {tableSended.length === 0 ? (
-              <>
-                Ile pytań pokazać ?
-                <input
-                  type="number"
-                  value={items}
-                  onChange={handleChangeNumber}
-                  min="1"
-                  max="14"
-                  defaultValue="1"
-                />
-                <Button text={"nowy test"} click={handleClickRestart} />
-              </>
-            ) : (
-              <>
-                <PassNavi />
-                <PassInProgress />
-              </>
-            )}
+          <PassResult />
+        ) : tableSended.length === 0 ? (
+          <div className="pass_app">
+            Ile pytań pokazać ?
+            <input
+              type="number"
+              value={items}
+              onChange={handleChangeNumber}
+              min="1"
+              max="40"
+            />
+            <Button text={"nowy test"} click={handleClickRestart} />
           </div>
+        ) : (
+          <PassInProgress />
         )}
       </div>
     </AppContext.Provider>
