@@ -1,0 +1,24 @@
+.contact{
+    display: flex;
+    justify-content: center;
+}
+
+.contact textarea{
+    font-size: 16px;
+    width: 80%;
+    min-height: 200px;
+    line-height: 1.6;
+}
+
+.contact button{
+    align-items: center;
+    border: 2px solid black;
+    background-color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: .2s;
+}
+.contact button:hover{
+    background-color: aqua;
+}
