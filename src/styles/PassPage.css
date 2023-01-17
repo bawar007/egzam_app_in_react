@@ -2,3 +2,32 @@
     display: flex;
     flex-direction: column;
 }
+
+.pass_page .pass_app{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pass_app input{
+    width: 50%;
+}
+
+
+
+.pass_app .btn:hover{
+    color: white;
+    background-color: rgb(8, 66, 124);
+    border-color: rgb(8, 66, 124);
+}
+
+
+.pass_app h1{
+    margin-bottom: 20px;
+}
+
+.pass_app select{
+    margin: 20px 0;
+    width: 30%;
+}

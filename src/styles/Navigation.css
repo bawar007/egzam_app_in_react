@@ -4,6 +4,7 @@
 .navigation ul{
     display: flex;
     list-style: none;
+    padding: 0;
 }
 
 .navigation ul li{

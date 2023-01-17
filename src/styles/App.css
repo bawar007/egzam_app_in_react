@@ -31,18 +31,3 @@
     align-items: center;
     flex-direction: column;
 }
-.btn{
-    background-color: white;
-    width: 20%;
-    min-width: 170px;
-    font-size: 24px;
-    height: 60px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-.btn:hover{
-    cursor: pointer;
-    background-color: green;
-}
-

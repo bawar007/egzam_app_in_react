@@ -6,10 +6,22 @@
 }
 
 .pass_result_answer{
+    margin: 20px 0;
     text-align: left;
     border-top: 5px solid yellow;
 }
 
+.buttons button{
+    width: 40%;
+    height: 50px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.buttons div{
+    width: 100%;
+}
 .pass_result_answer .pass_result_score{
     text-align: center;
     margin-top: 20px;

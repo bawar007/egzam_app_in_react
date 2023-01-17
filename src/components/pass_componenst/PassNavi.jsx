@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-import "../../styles/PassNavi.css";
-
 import { AppContext } from "./provider";
 
 const PassNavi = () => {

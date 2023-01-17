@@ -1,10 +1,6 @@
 import React, { useContext, useState } from "react";
-
-import "../../styles/PassResult.css";
-
-import Button from "../Buttons";
 import { AppContext } from "./provider";
-import PassNavi from "../../components/pass_componenst/PassNavi";
+import PassNavi from "./PassNavi";
 
 const PassResult = () => {
   const [settings, setSetting] = useState(false);
@@ -20,6 +16,8 @@ const PassResult = () => {
     handleShow,
     items,
     handleChangeNumber,
+    handleChangeSelectValue,
+    selectValue,
   } = useContext(AppContext);
 
   const {
@@ -33,8 +31,6 @@ const PassResult = () => {
     answerC,
     answerD,
   } = tableSended[currentQ];
-
-  let score = 0;
 
   const testAnswer = (value) => {
     if (selectedAnswer === value) {
@@ -66,27 +62,62 @@ const PassResult = () => {
     <div key={id} className="pass_result">
       <PassNavi />
       <div className="pass_result_changeAnswers">
-        <button onClick={showSetting} className="btn">
-          {settings ? "Ukryj ustawienia" : "Pokaż ustawienia"}
-        </button>
+        <div class="form-check form-check-reverse form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            id="flexSwitchCheckDefault"
+            onChange={showSetting}
+          />
+          <label class="form-check-label" for="flexSwitchCheckDefault">
+            Settings
+          </label>
+        </div>
         {settings ? (
           <div className="setting">
-            Wybierz ilość pytań:
+            <h4>Wybrana ilość pytań: {items}</h4>
             <input
-              type="number"
+              type="range"
               value={items}
               onChange={handleChangeNumber}
               min="1"
               max="40"
+              step="1"
+              className="form-range"
+              style={{ width: "50%" }}
             />
             <br />
-            <Button text="Zaakceptuj" click={handleClickRestart} />
+            Rodzaj egzaminu:
+            <select
+              value={selectValue.value}
+              onChange={handleChangeSelectValue}
+              className="form-select form-select-sm"
+              style={{
+                width: "30%",
+                marginBottom: 20,
+                marginLeft: 10,
+                display: "inline",
+              }}
+            >
+              <option value="ee8">EE8</option>
+              <option value="ee9">EE9</option>
+            </select>
+            <br />
+            <button
+              onClick={handleClickRestart}
+              className="btn btn-light btn-lg"
+            >
+              Zaakceptuj
+            </button>
           </div>
         ) : null}
       </div>
 
       <div className="pass_result_answer">
-        <h3 className="pass_result_score">TWÓJ WYNIK: {score}/5</h3>
+        <h3 className="pass_result_score">
+          TWÓJ WYNIK: 0/{tableSended.length}
+        </h3>
         <h3>
           {currentQ + 1}. {question}
         </h3>
@@ -111,24 +142,42 @@ const PassResult = () => {
       <div className="pass_result_buttons">
         <div className="buttons">
           {currentQ === 0 ? (
-            <>
-              <Button click={handleShow.bind(this, "next")} text="next" />
-              <Button click={handleClickRestart} text={"nowy test"} />
-            </>
+            tableSended.length === 1 ? null : (
+              <button
+                onClick={handleShow.bind(this, "next")}
+                className="btn btn-light"
+              >
+                next
+              </button>
+            )
           ) : currentQ === tableSended.length - 1 ? (
-            <>
-              <Button click={handleShow.bind(this, "back")} text="back" />
-              <Button click={handleClickRestart} text={"nowy test"} />
-            </>
+            <button
+              onClick={handleShow.bind(this, "back")}
+              className="btn btn-light"
+            >
+              back
+            </button>
           ) : (
-            <>
-              <div>
-                <Button click={handleShow.bind(this, "back")} text="back" />
-                <Button click={handleShow.bind(this, "next")} text="next" />
-              </div>
-              <Button click={handleClickRestart} text={"nowy test"} />
-            </>
+            <div>
+              <button
+                onClick={handleShow.bind(this, "back")}
+                className="btn btn-light"
+                style={{ marginRight: 10 }}
+              >
+                back
+              </button>
+              <button
+                onClick={handleShow.bind(this, "next")}
+                className="btn btn-light"
+              >
+                next
+              </button>
+            </div>
           )}
+
+          <button onClick={handleClickRestart} className="btn btn-light">
+            nowy test
+          </button>
         </div>
       </div>
     </div>

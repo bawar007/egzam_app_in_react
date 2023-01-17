@@ -1,10 +1,6 @@
 import React, { useContext } from "react";
-
-import "../../styles/PassInProgress.css";
-
-import Button from "../Buttons";
 import { AppContext } from "./provider";
-import PassNavi from "../../components/pass_componenst/PassNavi";
+import PassNavi from "./PassNavi";
 
 const PassInProgress = () => {
   const { tableSended, handleChange, handleSubmit, handleShow, currentQ } =
@@ -12,6 +8,8 @@ const PassInProgress = () => {
 
   const { id, question, selectedAnswer, answerA, answerB, answerC, answerD } =
     tableSended[currentQ];
+
+  const classBtn = "btn btn-light";
 
   return (
     <div key={id} className="pass_in_progress">
@@ -38,24 +36,47 @@ const PassInProgress = () => {
 
       <div className="buttons">
         {currentQ === 0 ? (
-          <>
-            <Button click={handleShow.bind(this, "next")} text="next" />
-            <Button click={handleSubmit} text="wyślij" />
-          </>
+          tableSended.length === 1 ? null : (
+            <>
+              <button
+                onClick={handleShow.bind(this, "next")}
+                className={classBtn}
+              >
+                next
+              </button>
+            </>
+          )
         ) : currentQ === tableSended.length - 1 ? (
           <>
-            <Button click={handleShow.bind(this, "back")} text="back" />
-            <Button click={handleSubmit} text="wyślij" />
+            <button
+              onClick={handleShow.bind(this, "back")}
+              className={classBtn}
+            >
+              back
+            </button>
           </>
         ) : (
           <>
             <div>
-              <Button click={handleShow.bind(this, "back")} text="back" />
-              <Button click={handleShow.bind(this, "next")} text="next" />
+              <button
+                onClick={handleShow.bind(this, "back")}
+                className={classBtn}
+                style={{ marginRight: 10 }}
+              >
+                back
+              </button>
+              <button
+                onClick={handleShow.bind(this, "next")}
+                className={classBtn}
+              >
+                next
+              </button>
             </div>
-            <Button click={handleSubmit} text="wyślij" />
           </>
         )}
+        <button onClick={handleSubmit} className={classBtn}>
+          wyślij
+        </button>
       </div>
     </div>
   );
