@@ -1,0 +1,35 @@
+.homePage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.img img{
+    max-width: 30%;
+    min-width: 30%;
+    height: 200px;
+}
+
+.img{
+    margin: 40px 0;
+}
+
+.my_buttons{
+    margin-top: 20px;
+}
+
+.my_buttons a{
+    text-decoration: none;
+    padding: 20px 30px;
+    text-transform: uppercase;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+    border-radius: 0.5rem;
+    color: black;
+    transition: 0.4s;
+}
+
+.my_buttons a:hover{
+    color: white;
+    background-color: rgb(8, 66, 124);
+    border-color: rgb(8, 66, 124);
+}
