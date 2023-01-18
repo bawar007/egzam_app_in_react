@@ -1,0 +1,16 @@
+@import "reset";
+@import "HomePage";
+@import "PassPage";
+@import "WikiPage";
+@import "ContactPage";
+@import "App";
+@import "Navigation";
+@import "PassNavi";
+
+@import "PassInProgress";
+@import "PassResult";
+
+body {
+  background-color: rgb(19, 19, 19);
+  font-family: Arial, Helvetica, sans-serif;
+}

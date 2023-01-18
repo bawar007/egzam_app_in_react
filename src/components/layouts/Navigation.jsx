@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const list = [
   { name: "start", path: "/", state: "start" },
   { name: "egzamin", path: "/pass", state: "egzamin" },
-  { name: "strefa wiedzy", path: "/wikisite", state: "strefa wiedzy" },
+  { name: "Wiki", path: "/wikisite", state: "Wiki" },
   { name: "kontakt", path: "/contact", state: "kontakt" },
 ];
 
@@ -18,9 +18,18 @@ const Navigation = () => {
     </li>
   ));
   return (
-    <nav className="navigation">
-      <ul>{menu}</ul>
-    </nav>
+    // <nav className="navigation">
+    //   <ul>{menu}</ul>
+    // </nav>
+
+    <section class="top-nav">
+      <div>React App</div>
+      <input id="menu-toggle" type="checkbox" />
+      <label class="menu-button-container" for="menu-toggle">
+        <div class="menu-button"></div>
+      </label>
+      <ul class="menu">{menu}</ul>
+    </section>
   );
 };
 

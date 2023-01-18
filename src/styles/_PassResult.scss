@@ -1,0 +1,62 @@
+.pass_result {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  .pass_result_answer {
+    margin: 20px 0;
+    text-align: left;
+    border-top: 5px solid yellow;
+
+    .pass_result_score {
+      text-align: center;
+      margin-top: 20px;
+      border-bottom: 3px solid yellow;
+      margin-bottom: 20px;
+    }
+    h3 {
+      padding-left: 10px;
+      padding-bottom: 20px;
+      font-size: 20px;
+    }
+    section {
+      padding: 20px 0 20px 20px;
+      border: 1px solid white;
+      font-size: 18px;
+      em {
+        font-size: 14px;
+        margin-left: 30px;
+        text-transform: uppercase;
+      }
+      &.isFalse {
+        background-color: red;
+        opacity: 0.8;
+      }
+      &.noValue {
+        background-color: red;
+        opacity: 0.6;
+      }
+      &.goodA {
+        background-color: green;
+      }
+    }
+  }
+
+  .pass_result_buttons {
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      div {
+        width: 100%;
+      }
+      button {
+        width: 40%;
+        min-height: 50px;
+        margin-bottom: 20px;
+        font-size: 20px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
