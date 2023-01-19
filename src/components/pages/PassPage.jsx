@@ -172,6 +172,7 @@ function PassPage() {
             <button
               onClick={handleClickRestart}
               className="btn btn-light btn-lg"
+              id="c"
             >
               nowy test
             </button>

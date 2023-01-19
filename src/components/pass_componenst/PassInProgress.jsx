@@ -41,6 +41,7 @@ const PassInProgress = () => {
               <button
                 onClick={handleShow.bind(this, "next")}
                 className={classBtn}
+                id="next"
               >
                 next
               </button>
@@ -51,6 +52,7 @@ const PassInProgress = () => {
             <button
               onClick={handleShow.bind(this, "back")}
               className={classBtn}
+              id="back"
             >
               back
             </button>
@@ -62,12 +64,14 @@ const PassInProgress = () => {
                 onClick={handleShow.bind(this, "back")}
                 className={classBtn}
                 style={{ marginRight: 10 }}
+                id="back"
               >
                 back
               </button>
               <button
                 onClick={handleShow.bind(this, "next")}
                 className={classBtn}
+                id="next"
               >
                 next
               </button>

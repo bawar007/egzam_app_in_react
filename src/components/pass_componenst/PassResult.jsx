@@ -1,24 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "./provider";
 import PassNavi from "./PassNavi";
 
 const PassResult = () => {
-  const [settings, setSetting] = useState(false);
-
-  const showSetting = () => {
-    setSetting(() => !settings);
-  };
-
-  const {
-    handleClickRestart,
-    tableSended,
-    currentQ,
-    handleShow,
-    items,
-    handleChangeNumber,
-    handleChangeSelectValue,
-    selectValue,
-  } = useContext(AppContext);
+  const { handleClickRestart, tableSended, currentQ, handleShow } =
+    useContext(AppContext);
 
   const {
     selectedAnswer,
@@ -61,59 +47,6 @@ const PassResult = () => {
   return (
     <div key={id} className="pass_result">
       <PassNavi />
-      <div className="pass_result_changeAnswers">
-        <div class="form-check form-check-reverse form-switch">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            role="switch"
-            id="flexSwitchCheckDefault"
-            onChange={showSetting}
-          />
-          <label class="form-check-label" for="flexSwitchCheckDefault">
-            Settings
-          </label>
-        </div>
-        {settings ? (
-          <div className="setting">
-            <h4>Wybrana ilość pytań: {items}</h4>
-            <input
-              type="range"
-              value={items}
-              onChange={handleChangeNumber}
-              min="1"
-              max="40"
-              step="1"
-              className="form-range"
-              style={{ width: "50%" }}
-            />
-            <br />
-            Rodzaj egzaminu:
-            <select
-              value={selectValue.value}
-              onChange={handleChangeSelectValue}
-              className="form-select form-select-sm"
-              style={{
-                width: "30%",
-                marginBottom: 20,
-                marginLeft: 10,
-                display: "inline",
-              }}
-            >
-              <option value="ee8">EE8</option>
-              <option value="ee9">EE9</option>
-            </select>
-            <br />
-            <button
-              onClick={handleClickRestart}
-              className="btn btn-light btn-lg"
-            >
-              Zaakceptuj
-            </button>
-          </div>
-        ) : null}
-      </div>
-
       <div className="pass_result_answer">
         <h3 className="pass_result_score">
           TWÓJ WYNIK: 0/{tableSended.length}
