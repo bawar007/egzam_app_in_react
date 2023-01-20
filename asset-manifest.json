@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/nauka/static/css/main.b7b20974.css",
+    "main.js": "/nauka/static/js/main.a3c2f465.js",
+    "index.html": "/nauka/index.html",
+    "main.b7b20974.css.map": "/nauka/static/css/main.b7b20974.css.map",
+    "main.a3c2f465.js.map": "/nauka/static/js/main.a3c2f465.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b7b20974.css",
+    "static/js/main.a3c2f465.js"
+  ]
+}
