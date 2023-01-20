@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/nauka/static/css/main.b7b20974.css",
-    "main.js": "/nauka/static/js/main.a3c2f465.js",
-    "index.html": "/nauka/index.html",
-    "main.b7b20974.css.map": "/nauka/static/css/main.b7b20974.css.map",
-    "main.a3c2f465.js.map": "/nauka/static/js/main.a3c2f465.js.map"
+    "main.css": "/egzam_app_in_react/static/css/main.b7b20974.css",
+    "main.js": "/egzam_app_in_react/static/js/main.f92ada44.js",
+    "index.html": "/egzam_app_in_react/index.html",
+    "main.b7b20974.css.map": "/egzam_app_in_react/static/css/main.b7b20974.css.map",
+    "main.f92ada44.js.map": "/egzam_app_in_react/static/js/main.f92ada44.js.map"
   },
   "entrypoints": [
     "static/css/main.b7b20974.css",
-    "static/js/main.a3c2f465.js"
+    "static/js/main.f92ada44.js"
   ]
 }
