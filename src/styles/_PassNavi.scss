@@ -64,6 +64,7 @@
   .allQ_checbox {
     width: 50%;
     text-align: left;
+    padding-left: 1em;
     input {
       display: none;
     }
@@ -73,7 +74,7 @@
     font-weight: bold;
     &:hover {
       color: green;
-      font-size: larger;
+      font-size: large;
       cursor: pointer;
     }
   }
@@ -129,24 +130,118 @@
       }
     }
   }
+  @media (max-width: 700px) {
+    .showAllQuestionsList {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
 }
 .changeAnswers {
   width: 50%;
+  padding-right: 1em;
   .setting {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: absolute;
     background-color: rgb(19, 19, 19);
-    height: 210px;
+    height: 305px;
     width: 100%;
     left: 0;
+    margin-top: 15px;
+    z-index: 1;
+    select {
+      margin-top: 10px;
+    }
     button {
       transform: 0.2s;
       &:hover {
         color: white;
         background-color: rgb(8, 66, 124);
         border-color: rgb(8, 66, 124);
+      }
+    }
+    .yes_no {
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+
+      div {
+        display: flex;
+        align-items: center;
+        padding: 20px 0;
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        label {
+          margin: 0 20px;
+          font-size: 20px;
+          font-weight: bold;
+          &:hover {
+            cursor: pointer;
+            color: green;
+          }
+          &:nth-child(1):hover {
+            color: red;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .settings_btn {
+      z-index: 1;
+      position: absolute;
+      background-color: #172227;
+      width: 55%;
+      min-height: 55%;
+      margin-top: 100px;
+      padding-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      button {
+        width: 80%;
+        height: 20%;
+        margin-bottom: 10px;
+        margin-left: 10%;
+        &:nth-child(1) {
+          text-align: center;
+          margin-left: 80%;
+          margin-top: 15px;
+          width: 30px;
+          height: 30px !important;
+          background-color: #172227;
+          border-color: #f8f9fa;
+          color: white;
+          font-weight: bold;
+          &:hover {
+            color: red;
+            border-color: red;
+          }
+        }
+      }
+      @media (min-width: 720px) {
+        width: 40%;
+        height: 80%;
+        button {
+          font-weight: bold;
+          text-transform: uppercase;
+          margin-left: 30%;
+          width: 40%;
+          height: 40%;
+          &:nth-child(1) {
+            margin-top: 20px;
+            background-color: #172227;
+            border-color: #f8f9fa;
+            color: white;
+            font-weight: bold;
+            &:hover {
+              color: red;
+              border-color: red;
+            }
+          }
+        }
       }
     }
   }

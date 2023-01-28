@@ -7,6 +7,7 @@ import Footer from "./Footer";
 
 function App() {
   return (
+    // <Router basename="/egzam_app_in_react/">
     <Router>
       <div className="App">
         <div className="navi">

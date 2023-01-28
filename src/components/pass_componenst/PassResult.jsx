@@ -3,7 +3,7 @@ import { AppContext } from "./provider";
 import PassNavi from "./PassNavi";
 
 const PassResult = () => {
-  const { handleClickRestart, tableSended, currentQ, handleShow } =
+  const { handleClickRestart, tableSended, currentQ, handleShow, score } =
     useContext(AppContext);
 
   const {
@@ -49,7 +49,7 @@ const PassResult = () => {
       <PassNavi />
       <div className="pass_result_answer">
         <h3 className="pass_result_score">
-          TWÓJ WYNIK: 0/{tableSended.length}
+          TWÓJ WYNIK: {score}/{tableSended.length}
         </h3>
         <h3>
           {currentQ + 1}. {question}

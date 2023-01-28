@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { NavLink } from "react-router-dom";
 
@@ -10,8 +10,14 @@ const list = [
 ];
 
 const Navigation = () => {
+  const [state, setState] = useState(false);
+
+  const handleChange = () => {
+    setState((p) => !p);
+  };
+
   const menu = list.map((item) => (
-    <li key={item.name}>
+    <li key={item.name} onClick={handleChange}>
       <NavLink to={item.path} state={item.state}>
         {item.name}
       </NavLink>
@@ -20,7 +26,12 @@ const Navigation = () => {
   return (
     <section className="top-nav">
       <div>React App</div>
-      <input id="menu-toggle" type="checkbox" />
+      <input
+        id="menu-toggle"
+        type="checkbox"
+        checked={state}
+        onChange={handleChange}
+      />
       <label className="menu-button-container" htmlFor="menu-toggle">
         <div className="menu-button"></div>
       </label>

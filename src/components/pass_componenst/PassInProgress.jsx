@@ -33,7 +33,6 @@ const PassInProgress = () => {
           {" D.  " + answerD}
         </label>
       </div>
-
       <div className="buttons">
         {currentQ === 0 ? (
           tableSended.length === 1 ? null : (

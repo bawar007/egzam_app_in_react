@@ -10,15 +10,26 @@ function PassPage() {
     tableSended: [],
     currentQuestion: 0,
     items: 1,
+    value: "ee8",
   });
 
-  const [selectValue, setValue] = useState({
-    value: "ee8",
+  const [settingsValue, setSettingsValue] = useState({
+    visibility: false,
+    value: newState.value,
     checked: false,
+    items: 1,
+    showAccept: false,
   });
+
+  const [autoNextQuestion, setAuto] = useState(true);
+
+  const [score, setScore] = useState(0);
 
   const handleClickRestart = () => {
-    fetch("/data/pass_table.json")
+    const value = settingsValue.checked ? settingsValue.value : newState.value;
+    const items = settingsValue.checked ? settingsValue.items : newState.items;
+    // fetch("https://bawar007.github.io/egzam_app_in_react/data/pass_table.json")
+    fetch("/egzam_app_in_react/data/pass_table.json")
       .then((response) => {
         if (response.ok) {
           return response;
@@ -27,13 +38,13 @@ function PassPage() {
       })
       .then((response) => response.json())
       .then((data) => {
-        switch (selectValue.value) {
+        switch (value) {
           case "ee8":
             return data.ee8;
           case "ee9":
             return data.ee9;
           default:
-            console.log(`Sorry, we are out of ${selectValue}`);
+            console.log(`Sorry, we are out of ${value}`);
         }
       })
       .then((table) => {
@@ -41,15 +52,18 @@ function PassPage() {
           .sort(
             () => Math.random() * table.length - Math.random() * table.length
           )
-          .splice(newState.items);
+          .splice(items);
         setState((prevState) => {
           return {
             ...prevState,
             tableSended: table,
             form: false,
             currentQuestion: 0,
+            value,
+            items,
           };
         });
+        setScore(0);
       })
       .catch();
   };
@@ -78,11 +92,19 @@ function PassPage() {
     setState((prevState) => {
       return { ...prevState, tableSended: newTable };
     });
+    if (autoNextQuestion) {
+      handleShow("next");
+    }
   };
 
   const handleSubmit = () => {
     setState((prevState) => {
       return { ...prevState, form: true, currentQuestion: 0 };
+    });
+    tableSended.forEach((el) => {
+      if (el.action) {
+        setScore((p) => p + 1);
+      }
     });
   };
 
@@ -106,21 +128,82 @@ function PassPage() {
 
   const handleChangeNumber = (e) => {
     const number = Number(e.target.value);
-    if (number >= 1 && number <= 40) {
-      setState((prevState) => {
-        return { ...prevState, items: number };
+    if (e.target.name === "settingsNumber") {
+      if (number >= 1 && number <= 40) {
+        setSettingsValue((prevState) => {
+          return { ...prevState, items: number };
+        });
+      }
+    } else {
+      if (number >= 1 && number <= 40) {
+        setState((prevState) => {
+          return { ...prevState, items: number };
+        });
+      }
+    }
+  };
+
+  const handleChangeSelectValueSet = (e) => {
+    if (e.target.name === "settingsSelectValue") {
+      setSettingsValue((p) => {
+        return { ...p, value: e.target.value };
+      });
+    } else {
+      setState((p) => {
+        return { ...p, value: e.target.value };
       });
     }
   };
 
-  const handleChangeSelectValue = (e) => {
-    console.log(e.target.value);
-    setValue(() => {
-      return { value: e.target.value };
+  const handleAcceptSettings = () => {
+    setSettingsValue((p) => {
+      return { ...p, showAccept: true };
     });
   };
 
-  const { form, tableSended, currentQuestion, items, score } = newState;
+  const handleSettings = (e) => {
+    console.log(e);
+    if (e === "lnT") {
+      handleClickRestart();
+      setSettingsValue((p) => {
+        return {
+          ...p,
+          visibility: false,
+          showAccept: false,
+        };
+      });
+    } else if (e === "quitS") {
+      setSettingsValue((p) => {
+        return {
+          showAccept: false,
+          visibility: true,
+          value: newState.value,
+          checked: false,
+          items: newState.items,
+        };
+      });
+    } else if (e === "ssP") {
+      setSettingsValue((p) => {
+        return {
+          ...p,
+          checked: true,
+          showAccept: false,
+          visibility: false,
+        };
+      });
+    } else if (e === "qS") {
+      setSettingsValue((p) => {
+        return { ...p, showAccept: false };
+      });
+    }
+  };
+  const showSetting = () => {
+    setSettingsValue((p) => {
+      return { ...p, visibility: !p.visibility };
+    });
+  };
+
+  const { form, tableSended, currentQuestion, items, value } = newState;
 
   return (
     <AppContext.Provider
@@ -131,13 +214,18 @@ function PassPage() {
         handleSubmit,
         handleClickRestart,
         handleChangeNumber,
-        handleChangeSelectValue,
+        handleChangeSelectValueSet,
+        handleSettings,
+        setAuto,
+        showSetting,
+        autoNextQuestion,
         currentQ: currentQuestion,
         tableSended,
         items,
         form,
-        selectValue,
+        settingsValue,
         score,
+        handleAcceptSettings,
       }}
     >
       <div className="pass_page">
@@ -162,8 +250,8 @@ function PassPage() {
             />
             <h2>Wybierz rodzaj egzaminu:</h2>
             <select
-              value={selectValue.value}
-              onChange={handleChangeSelectValue}
+              value={value}
+              onChange={handleChangeSelectValueSet}
               className="form-select form-select-sm"
             >
               <option value="ee8">EE8</option>

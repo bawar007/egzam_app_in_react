@@ -1,29 +1,26 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "./provider";
 
+import PassSettings from "./PassSettings";
+
 const PassNavi = () => {
   const {
     handleNavi,
     currentQ,
     tableSended,
-    items,
-    handleChangeNumber,
-    handleChangeSelectValue,
-    selectValue,
-    handleClickRestart,
     form,
+    settingsValue,
+    showSetting,
   } = useContext(AppContext);
 
   const [allQuestions, setQuestions] = useState(false);
 
-  const [settings, setSetting] = useState(false);
-
   const allQStyle = {
-    marginTop: "215px",
+    marginTop: "315px",
   };
 
-  const showSetting = () => {
-    setSetting(() => !settings);
+  const handleChangeChecbox = () => {
+    setQuestions((prevState) => !prevState);
   };
 
   const naviList = tableSended.map((el, index) => {
@@ -74,10 +71,6 @@ const PassNavi = () => {
     );
   });
 
-  const handleChangeChecbox = () => {
-    setQuestions((prevState) => !prevState);
-  };
-
   return (
     <>
       <div className="pass_navi">
@@ -98,7 +91,7 @@ const PassNavi = () => {
             <div
               className="showAllQuestionsList"
               id="showAll"
-              style={settings ? allQStyle : null}
+              style={settingsValue.visibility ? allQStyle : null}
             >
               <ul>{allQuestionList}</ul>
             </div>
@@ -112,6 +105,7 @@ const PassNavi = () => {
               role="switch"
               id="flexSwitchCheckDefault"
               onChange={showSetting}
+              checked={settingsValue.visibility}
             />
             <label
               className="form-check-label"
@@ -120,44 +114,7 @@ const PassNavi = () => {
               Settings
             </label>
           </div>
-          {settings ? (
-            <div className="setting">
-              <h4>Wybrana ilość pytań: {items}</h4>
-              <input
-                type="range"
-                value={items}
-                onChange={handleChangeNumber}
-                min="1"
-                max="40"
-                step="1"
-                className="form-range"
-                style={{ width: "50%" }}
-              />
-              <br />
-              Rodzaj egzaminu:
-              <select
-                value={selectValue.value}
-                onChange={handleChangeSelectValue}
-                className="form-select form-select-sm"
-                style={{
-                  width: "30%",
-                  marginBottom: 20,
-                  marginLeft: 10,
-                  display: "inline",
-                }}
-              >
-                <option value="ee8">EE8</option>
-                <option value="ee9">EE9</option>
-              </select>
-              <br />
-              <button
-                onClick={handleClickRestart}
-                className="btn btn-light btn-lg"
-              >
-                Zaakceptuj
-              </button>
-            </div>
-          ) : null}
+          {settingsValue.visibility && <PassSettings />}
         </div>
       </div>
     </>
