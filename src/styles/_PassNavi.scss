@@ -1,74 +1,97 @@
+.displayRowWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 .pass_navi {
-  .pass_navi_list {
-    list-style: none;
+  .pass_navi_MoreMinus {
     display: flex;
+  }
+
+  .myArrow {
+    padding: 20px;
+    border: 2px solid white;
+    margin: 4px 4px;
+    transition: 0.3s;
+    &:hover {
+      border-color: yellow;
+      color: yellow;
+      cursor: pointer;
+    }
+    @media (max-width: 700px) {
+      padding: 15px;
+    }
+  }
+  .myUl {
+    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    text-align: center;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-
-    li {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 50px;
-      border-radius: 50%;
-      height: 50px;
-      margin: 0 2px;
-      background-color: black;
-      border: 2px solid white;
-      transition: 0.2s;
-
-      &.activeNav {
-        border-color: yellow;
-        color: yellow;
-        height: 60px;
-        width: 60px;
-      }
-      &.goodAnswer {
-        border-color: green;
-        color: green;
-      }
-      &.badAnswer {
-        border-color: red;
-        color: red;
-      }
-      &:hover {
-        cursor: pointer;
-        border-color: yellow;
-        color: yellow;
-        height: 60px;
-        width: 60px;
+    list-style: none;
+    @media (max-width: 700px) {
+      li {
+        height: 45px;
+        width: 45px;
       }
     }
   }
-
-  @media (max-width: 700px) {
-    .pass_navi_list li {
-      height: 45px;
-      width: 45px;
-      &.ActiveNav {
-        height: 35px;
-        width: 35px;
+  .myLi {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border: 2px solid white;
+    border-radius: 50%;
+    margin: 4px 4px;
+    transition: 0.3s;
+    &.activeNav {
+      border-color: yellow;
+      color: yellow;
+      height: 60px;
+      width: 60px;
+      @media (max-width: 700px) {
+        height: 48px;
+        width: 48px;
       }
+    }
+    &.goodAnswer {
+      border-color: green;
+      color: green;
+    }
+    &.badAnswer {
+      border-color: red;
+      color: red;
+    }
+    &:hover {
+      cursor: pointer;
+      border-color: yellow;
+      color: yellow;
+    }
+  }
+  .pass_navi_L {
+    .pass_navi_list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      text-align: center;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .pass_navi_MoreP {
+    display: flex;
+    flex-direction: column;
+
+    div {
     }
   }
 }
-
-.allQue {
-  display: flex;
-  flex-direction: row;
-  margin-top: 30px;
-
-  .allQ_checbox {
-    width: 50%;
-    text-align: left;
-    padding-left: 1em;
-    input {
-      display: none;
-    }
-  }
+.changeAnswers {
   label {
     text-transform: uppercase;
     font-weight: bold;
@@ -78,67 +101,10 @@
       cursor: pointer;
     }
   }
-  .showAllQuestionsList {
-    position: absolute;
-    left: 0;
-    width: 80%;
-    background-color: rgb(19, 19, 19);
-    margin-left: 10%;
-    margin-top: 30px;
-    padding: 30px;
-    ul {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      list-style: none;
-      li {
-        width: 50px;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: black;
-        border: 2px solid white;
-        border-radius: 50%;
-        margin: 4px 4px;
-        transition: 0.3s;
-        &.activeNav {
-          border-color: yellow;
-          color: yellow;
-        }
-        &.goodAnswer {
-          border-color: green;
-          color: green;
-        }
-        &.badAnswer {
-          border-color: red;
-          color: red;
-        }
-        &:hover {
-          cursor: pointer;
-          border-color: yellow;
-          color: yellow;
-          width: 55px;
-          height: 55px;
-        }
-      }
-      @media (max-width: 700px) {
-        li {
-          height: 30px;
-          width: 30px;
-        }
-      }
-    }
-  }
-  @media (max-width: 700px) {
-    .showAllQuestionsList {
-      width: 100%;
-      margin-left: 0;
-    }
-  }
-}
-.changeAnswers {
-  width: 50%;
+  display: flex;
+  margin-top: 30px;
+  justify-content: flex-end;
+  width: 100%;
   padding-right: 1em;
   .setting {
     display: flex;
@@ -149,10 +115,11 @@
     height: 305px;
     width: 100%;
     left: 0;
-    margin-top: 15px;
+    margin-top: 35px;
     z-index: 1;
     select {
       margin-top: 10px;
+      cursor: pointer;
     }
     button {
       transform: 0.2s;

@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
 import { AppContext } from "./provider";
+
 import PassNavi from "./PassNavi";
+import Buttons from "./PassButtons";
 
 const PassResult = () => {
-  const { handleClickRestart, tableSended, currentQ, handleShow, score } =
-    useContext(AppContext);
+  const { newState, score } = useContext(AppContext);
+
+  const { tableSended, currentQuestion } = newState;
 
   const {
     selectedAnswer,
@@ -16,7 +19,7 @@ const PassResult = () => {
     answerB,
     answerC,
     answerD,
-  } = tableSended[currentQ];
+  } = tableSended[currentQuestion];
 
   const testAnswer = (value) => {
     if (selectedAnswer === value) {
@@ -52,7 +55,7 @@ const PassResult = () => {
           TWÓJ WYNIK: {score}/{tableSended.length}
         </h3>
         <h3>
-          {currentQ + 1}. {question}
+          {currentQuestion + 1}. {question}
         </h3>
 
         <section className={testAnswer("a")}>
@@ -72,47 +75,7 @@ const PassResult = () => {
         </section>
       </div>
 
-      <div className="pass_result_buttons">
-        <div className="buttons">
-          {currentQ === 0 ? (
-            tableSended.length === 1 ? null : (
-              <button
-                onClick={handleShow.bind(this, "next")}
-                className="btn btn-light"
-              >
-                next
-              </button>
-            )
-          ) : currentQ === tableSended.length - 1 ? (
-            <button
-              onClick={handleShow.bind(this, "back")}
-              className="btn btn-light"
-            >
-              back
-            </button>
-          ) : (
-            <div>
-              <button
-                onClick={handleShow.bind(this, "back")}
-                className="btn btn-light"
-                style={{ marginRight: 10 }}
-              >
-                back
-              </button>
-              <button
-                onClick={handleShow.bind(this, "next")}
-                className="btn btn-light"
-              >
-                next
-              </button>
-            </div>
-          )}
-
-          <button onClick={handleClickRestart} className="btn btn-light">
-            nowy test
-          </button>
-        </div>
-      </div>
+      <Buttons result={true} />
     </div>
   );
 };

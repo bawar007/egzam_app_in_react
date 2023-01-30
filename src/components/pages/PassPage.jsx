@@ -19,11 +19,12 @@ function PassPage() {
     checked: false,
     items: 1,
     showAccept: false,
+    autoNextQuestion: true,
   });
 
-  const [autoNextQuestion, setAuto] = useState(true);
-
   const [score, setScore] = useState(0);
+
+  const { form, tableSended, items, value } = newState;
 
   const handleClickRestart = () => {
     const value = settingsValue.checked ? settingsValue.value : newState.value;
@@ -64,66 +65,26 @@ function PassPage() {
           };
         });
         setScore(0);
+        setSettingsValue((p) => {
+          return { ...p, visibility: false, showAccept: false };
+        });
       })
       .catch();
-  };
-
-  const handleChange = (e) => {
-    const table = [...newState.tableSended];
-
-    const newTable = table.map((el) => {
-      const { name, value } = e.target;
-      if (el.id === name && el.correctAnswer === value) {
-        return {
-          ...el,
-          selectedAnswer: value,
-          action: true,
-        };
-      } else if (el.id === name) {
-        return {
-          ...el,
-          selectedAnswer: value,
-          action: false,
-        };
-      } else {
-        return el;
-      }
-    });
-    setState((prevState) => {
-      return { ...prevState, tableSended: newTable };
-    });
-    if (autoNextQuestion) {
-      handleShow("next");
-    }
-  };
-
-  const handleSubmit = () => {
-    setState((prevState) => {
-      return { ...prevState, form: true, currentQuestion: 0 };
-    });
-    tableSended.forEach((el) => {
-      if (el.action) {
-        setScore((p) => p + 1);
-      }
-    });
   };
 
   const handleShow = (e) => {
     let currentQuestion = newState.currentQuestion;
     if (e === "next" && currentQuestion < newState.items - 1) {
-      currentQuestion = currentQuestion + 1;
+      console.log("next");
+      setState((prevState) => {
+        return { ...prevState, currentQuestion: prevState.currentQuestion + 1 };
+      });
     } else if (e === "back" && currentQuestion > 0) {
-      currentQuestion = currentQuestion - 1;
+      console.log("back");
+      setState((prevState) => {
+        return { ...prevState, currentQuestion: prevState.currentQuestion - 1 };
+      });
     } else return null;
-    setState((prevState) => {
-      return { ...prevState, currentQuestion: currentQuestion };
-    });
-  };
-
-  const handleNavi = (a) => {
-    setState((prevState) => {
-      return { ...prevState, currentQuestion: a };
-    });
   };
 
   const handleChangeNumber = (e) => {
@@ -155,77 +116,19 @@ function PassPage() {
     }
   };
 
-  const handleAcceptSettings = () => {
-    setSettingsValue((p) => {
-      return { ...p, showAccept: true };
-    });
-  };
-
-  const handleSettings = (e) => {
-    console.log(e);
-    if (e === "lnT") {
-      handleClickRestart();
-      setSettingsValue((p) => {
-        return {
-          ...p,
-          visibility: false,
-          showAccept: false,
-        };
-      });
-    } else if (e === "quitS") {
-      setSettingsValue((p) => {
-        return {
-          showAccept: false,
-          visibility: true,
-          value: newState.value,
-          checked: false,
-          items: newState.items,
-        };
-      });
-    } else if (e === "ssP") {
-      setSettingsValue((p) => {
-        return {
-          ...p,
-          checked: true,
-          showAccept: false,
-          visibility: false,
-        };
-      });
-    } else if (e === "qS") {
-      setSettingsValue((p) => {
-        return { ...p, showAccept: false };
-      });
-    }
-  };
-  const showSetting = () => {
-    setSettingsValue((p) => {
-      return { ...p, visibility: !p.visibility };
-    });
-  };
-
-  const { form, tableSended, currentQuestion, items, value } = newState;
-
   return (
     <AppContext.Provider
       value={{
-        handleNavi,
         handleShow,
-        handleChange,
-        handleSubmit,
         handleClickRestart,
         handleChangeNumber,
         handleChangeSelectValueSet,
-        handleSettings,
-        setAuto,
-        showSetting,
-        autoNextQuestion,
-        currentQ: currentQuestion,
-        tableSended,
-        items,
-        form,
+        setSettingsValue,
+        setState,
+        setScore,
         settingsValue,
         score,
-        handleAcceptSettings,
+        newState,
       }}
     >
       <div className="pass_page">

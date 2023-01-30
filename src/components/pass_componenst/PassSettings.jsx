@@ -7,14 +7,61 @@ const PassSettins = () => {
     handleChangeNumber,
     settingsValue,
     handleChangeSelectValueSet,
-    setAuto,
-    autoNextQuestion,
-    handleAcceptSettings,
-    handleSettings,
+    handleClickRestart,
+    setSettingsValue,
+    newState,
   } = useContext(AppContext);
 
   const handleAuto = () => {
-    setAuto((prev) => !prev);
+    setSettingsValue((prev) => {
+      return {
+        ...prev,
+        autoNextQuestion: !prev.autoNextQuestion,
+      };
+    });
+  };
+
+  const handleAcceptSettings = () => {
+    setSettingsValue((p) => {
+      return { ...p, showAccept: true };
+    });
+  };
+
+  const handleSettings = (e) => {
+    if (e === "lnT") {
+      handleClickRestart();
+      setSettingsValue((p) => {
+        return {
+          ...p,
+          visibility: false,
+          showAccept: false,
+          checked: true,
+        };
+      });
+    } else if (e === "quitS") {
+      setSettingsValue((p) => {
+        return {
+          showAccept: false,
+          visibility: true,
+          value: newState.value,
+          checked: false,
+          items: newState.items,
+        };
+      });
+    } else if (e === "ssP") {
+      setSettingsValue((p) => {
+        return {
+          ...p,
+          checked: true,
+          showAccept: false,
+          visibility: false,
+        };
+      });
+    } else if (e === "qS") {
+      setSettingsValue((p) => {
+        return { ...p, showAccept: false };
+      });
+    }
   };
 
   return (
@@ -54,7 +101,7 @@ const PassSettins = () => {
           <label
             className="form-check-label"
             htmlFor="flexSwitchCheck"
-            style={autoNextQuestion ? null : { color: "red" }}
+            style={settingsValue.autoNextQuestion ? null : { color: "red" }}
           >
             NIE
           </label>
@@ -64,7 +111,7 @@ const PassSettins = () => {
             role="switch"
             id="flexSwitchCheck"
             onChange={handleAuto}
-            checked={autoNextQuestion}
+            checked={settingsValue.autoNextQuestion}
             style={{
               margin: 0,
             }}
@@ -72,7 +119,7 @@ const PassSettins = () => {
           <label
             className="form-check-label"
             htmlFor="flexSwitchCheck"
-            style={autoNextQuestion ? { color: "green" } : null}
+            style={settingsValue.autoNextQuestion ? { color: "green" } : null}
           >
             TAK
           </label>

@@ -1,44 +1,76 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { AppContext } from "./provider";
 
 import PassSettings from "./PassSettings";
 
 const PassNavi = () => {
-  const {
-    handleNavi,
-    currentQ,
-    tableSended,
-    form,
-    settingsValue,
-    showSetting,
-  } = useContext(AppContext);
+  const { newState, settingsValue, setSettingsValue, setState, handleShow } =
+    useContext(AppContext);
 
-  const [allQuestions, setQuestions] = useState(false);
+  const { tableSended } = newState;
 
-  const allQStyle = {
-    marginTop: "315px",
+  const currentQ = newState.currentQuestion;
+
+  const windowWidth = useRef(window.innerWidth);
+
+  const [allQuestions, setQuestions] = useState({
+    allQuestionsMoreM: false,
+    allQuestionsMoreP: false,
+    allQuestionsMoreSingle: true,
+  });
+
+  const showSetting = () => {
+    setSettingsValue((p) => {
+      return { ...p, visibility: !p.visibility };
+    });
   };
 
-  const handleChangeChecbox = () => {
-    setQuestions((prevState) => !prevState);
+  const handleNavi = (a) => {
+    setState((prevState) => {
+      return { ...prevState, currentQuestion: a };
+    });
+  };
+
+  const handleChangeChecbox = (e) => {
+    if (e === "MoreM") {
+      setQuestions((p) => {
+        return {
+          ...p,
+          allQuestionsMoreM: !p.allQuestionsMoreM,
+          allQuestionsMoreSingle: !p.allQuestionsMoreSingle,
+          allQuestionsMoreP: false,
+        };
+      });
+    } else if (e === "MoreP") {
+      setQuestions((p) => {
+        return {
+          ...p,
+          allQuestionsMoreP: !p.allQuestionsMoreP,
+          allQuestionsMoreSingle: !p.allQuestionsMoreSingle,
+          allQuestionsMoreM: false,
+        };
+      });
+    }
   };
 
   const naviList = tableSended.map((el, index) => {
-    if (currentQ - 3 < index && currentQ + 3 > index) {
+    let itemS = windowWidth.current > 700 ? 3 : 2;
+    console.log(windowWidth);
+    if (currentQ - itemS < index && currentQ + itemS > index) {
       return (
         <li
           key={el.id}
           onClick={handleNavi.bind(this, index)}
           className={
-            form
+            newState.form
               ? currentQ === index
-                ? "activeNav"
+                ? "activeNav myLi"
                 : el.action
-                ? "goodAnswer"
-                : "badAnswer"
+                ? "goodAnswer myLi"
+                : "badAnswer myLi"
               : currentQ === index
-              ? "activeNav"
-              : null
+              ? "activeNav myLi"
+              : "myLi"
           }
         >
           {index + 1}
@@ -49,73 +81,138 @@ const PassNavi = () => {
     }
   });
 
-  const allQuestionList = tableSended.map((el, index) => {
-    return (
-      <li
-        key={el.id}
-        onClick={handleNavi.bind(this, index)}
-        className={
-          form
-            ? currentQ === index
-              ? "activeNav"
-              : el.action
-              ? "goodAnswer"
-              : "badAnswer"
-            : currentQ === index
-            ? "activeNav"
-            : null
-        }
-      >
-        {index + 1}
-      </li>
-    );
+  const questionListP = tableSended.map((el, index) => {
+    if (currentQ - 1 < index) {
+      return (
+        <li
+          key={el.id}
+          onClick={handleNavi.bind(this, index)}
+          className={
+            newState.form
+              ? currentQ === index
+                ? "activeNav myLi"
+                : el.action
+                ? "goodAnswer myLi"
+                : "badAnswer myLi"
+              : currentQ === index
+              ? "activeNav myLi"
+              : "myLi"
+          }
+        >
+          {index + 1}
+        </li>
+      );
+    } else return null;
+  });
+
+  const questionListLeft = tableSended.map((el, index) => {
+    if (currentQ + 1 > index) {
+      return (
+        <li
+          key={el.id}
+          onClick={handleNavi.bind(this, index)}
+          className={
+            newState.form
+              ? currentQ === index
+                ? "activeNav myLi"
+                : el.action
+                ? "goodAnswer myLi"
+                : "badAnswer myLi"
+              : currentQ === index
+              ? "activeNav myLi"
+              : "myLi"
+          }
+        >
+          {index + 1}
+        </li>
+      );
+    } else return null;
   });
 
   return (
     <>
-      <div className="pass_navi">
-        <ul className="pass_navi_list">{naviList}</ul>
+      <div className="pass_navi displayRowWrap">
+        <div className="pass_navi_MoreMinus">
+          {allQuestions.allQuestionsMoreM ? (
+            <div className="showAllQuestionsList displayRowWrap" id="showAll">
+              <i
+                className="fa-solid fa-chevron-right myArrow"
+                onClick={handleChangeChecbox.bind(this, "MoreM")}
+              ></i>
+              <ul className="pass_navi_list_MoreP myUl">{questionListLeft}</ul>
+            </div>
+          ) : (
+            <div>
+              {currentQ > 2 ? (
+                <>
+                  <i
+                    className="fa-solid fa-angles-left myArrow"
+                    onClick={handleChangeChecbox.bind(this, "MoreM")}
+                  ></i>
+                  <i
+                    className="fa-solid fa-chevron-left myArrow"
+                    onClick={handleShow.bind(this, "back")}
+                  ></i>
+                </>
+              ) : (
+                <i className="fa-solid fa-arrow-left myArrow"></i>
+              )}
+            </div>
+          )}
+        </div>
+
+        {!allQuestions.allQuestionsMoreM && !allQuestions.allQuestionsMoreP ? (
+          <div className="pass_navi_L">
+            <ul className="pass_navi_list myUl">{naviList}</ul>
+          </div>
+        ) : null}
+
+        <div className="pass_navi_MoreP">
+          {allQuestions.allQuestionsMoreP ? (
+            <div
+              className="showAllQuestionsList_MoreP displayRowWrap"
+              id="showAll"
+            >
+              <ul className="pass_navi_list_MoreP myUl">{questionListP}</ul>
+              <i
+                className="fa-solid fa-angles-left myArrow"
+                onClick={handleChangeChecbox.bind(this, "MoreP")}
+              ></i>
+            </div>
+          ) : (
+            <div>
+              {currentQ < tableSended.length - 3 ? (
+                <>
+                  <i
+                    className="fa-solid fa-chevron-right myArrow"
+                    onClick={handleShow.bind(this, "next")}
+                  ></i>
+                  <i
+                    className="fa-solid fa-angles-right myArrow"
+                    onClick={handleChangeChecbox.bind(this, "MoreP")}
+                  ></i>
+                </>
+              ) : (
+                <i className="fa-solid fa-arrow-right myArrow"></i>
+              )}
+            </div>
+          )}
+        </div>
       </div>
-      <div className="allQue">
-        <div className="allQ_checbox">
-          <label htmlFor="allQ">
-            {allQuestions ? "Ukryj pytania" : "Pokaż wszystkie pytania"}
-          </label>
+      <div className="changeAnswers">
+        <div className="form-check form-check-reverse form-switch">
           <input
             type="checkbox"
-            id="allQ"
-            checked={allQuestions}
-            onChange={handleChangeChecbox}
+            id="flexSwitchCheckDefault"
+            onChange={showSetting}
+            checked={settingsValue.visibility}
+            hidden
           />
-          {allQuestions ? (
-            <div
-              className="showAllQuestionsList"
-              id="showAll"
-              style={settingsValue.visibility ? allQStyle : null}
-            >
-              <ul>{allQuestionList}</ul>
-            </div>
-          ) : null}
+          <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+            <i className="fa-solid fa-wrench fa-2xl"></i>
+          </label>
         </div>
-        <div className="changeAnswers">
-          <div className="form-check form-check-reverse form-switch">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              role="switch"
-              id="flexSwitchCheckDefault"
-              onChange={showSetting}
-              checked={settingsValue.visibility}
-            />
-            <label
-              className="form-check-label"
-              htmlFor="flexSwitchCheckDefault"
-            >
-              Settings
-            </label>
-          </div>
-          {settingsValue.visibility && <PassSettings />}
-        </div>
+        {settingsValue.visibility && <PassSettings />}
       </div>
     </>
   );
