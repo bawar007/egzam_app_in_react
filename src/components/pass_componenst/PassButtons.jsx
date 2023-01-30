@@ -6,9 +6,7 @@ const Buttons = ({ result }) => {
   const { newState, setState, setScore, handleShow, handleClickRestart } =
     useContext(AppContext);
 
-  const { currentQuestion, tableSended } = newState;
-
-  const classBtn = "btn btn-light";
+  const { tableSended } = newState;
 
   const handleSubmit = () => {
     setState((prevState) => {
@@ -22,65 +20,25 @@ const Buttons = ({ result }) => {
   };
 
   return (
-    <>
-      <div className="buttons">
-        {currentQuestion === 0 ? (
-          tableSended.length === 1 ? null : (
-            <>
-              {result ? (
-                <button onClick={handleClickRestart} className={classBtn}>
-                  nowy test
-                </button>
-              ) : (
-                <button onClick={handleSubmit} className={classBtn}>
-                  wyślij
-                </button>
-              )}
-              <i
-                className="fa-solid fa-chevron-right fa-2xl"
-                onClick={handleShow.bind(this, "next")}
-              ></i>
-            </>
-          )
-        ) : currentQuestion === tableSended.length - 1 ? (
-          <>
-            <i
-              className="fa-solid fa-chevron-left fa-2xl"
-              onClick={handleShow.bind(this, "back")}
-            ></i>
-            {result ? (
-              <button onClick={handleClickRestart} className={classBtn}>
-                nowy test
-              </button>
-            ) : (
-              <button onClick={handleSubmit} className={classBtn}>
-                wyślij
-              </button>
-            )}
-          </>
-        ) : (
-          <>
-            <i
-              className="fa-solid fa-chevron-left fa-2xl"
-              onClick={handleShow.bind(this, "back")}
-            ></i>
-            {result ? (
-              <button onClick={handleClickRestart} className={classBtn}>
-                nowy test
-              </button>
-            ) : (
-              <button onClick={handleSubmit} className={classBtn}>
-                wyślij
-              </button>
-            )}
-            <i
-              className="fa-solid fa-chevron-right fa-2xl"
-              onClick={handleShow.bind(this, "next")}
-            ></i>
-          </>
-        )}
-      </div>
-    </>
+    <div className="buttons">
+      <i
+        className="fa-solid fa-chevron-left fa-2xl"
+        onClick={handleShow.bind(this, "back")}
+      ></i>
+      {result ? (
+        <button onClick={handleClickRestart} className="btn btn-light">
+          nowy test
+        </button>
+      ) : (
+        <button onClick={handleSubmit} className="btn btn-light">
+          wyślij
+        </button>
+      )}
+      <i
+        className="fa-solid fa-chevron-right fa-2xl"
+        onClick={handleShow.bind(this, "next")}
+      ></i>
+    </div>
   );
 };
 

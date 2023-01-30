@@ -136,7 +136,7 @@ const PassNavi = () => {
           {allQuestions.allQuestionsMoreM ? (
             <div className="showAllQuestionsList displayRowWrap" id="showAll">
               <i
-                className="fa-solid fa-chevron-right myArrow"
+                className="fa-solid fa-angles-right myArrow"
                 onClick={handleChangeChecbox.bind(this, "MoreM")}
               ></i>
               <ul className="pass_navi_list_MoreP myUl">{questionListLeft}</ul>
@@ -149,14 +149,12 @@ const PassNavi = () => {
                     className="fa-solid fa-angles-left myArrow"
                     onClick={handleChangeChecbox.bind(this, "MoreM")}
                   ></i>
-                  <i
-                    className="fa-solid fa-chevron-left myArrow"
-                    onClick={handleShow.bind(this, "back")}
-                  ></i>
                 </>
-              ) : (
-                <i className="fa-solid fa-arrow-left myArrow"></i>
-              )}
+              ) : null}
+              <i
+                className="fa-solid fa-chevron-left myArrow"
+                onClick={handleShow.bind(this, "back")}
+              ></i>
             </div>
           )}
         </div>
@@ -181,20 +179,18 @@ const PassNavi = () => {
             </div>
           ) : (
             <div>
+              <i
+                className="fa-solid fa-chevron-right myArrow"
+                onClick={handleShow.bind(this, "next")}
+              ></i>
               {currentQ < tableSended.length - 3 ? (
                 <>
-                  <i
-                    className="fa-solid fa-chevron-right myArrow"
-                    onClick={handleShow.bind(this, "next")}
-                  ></i>
                   <i
                     className="fa-solid fa-angles-right myArrow"
                     onClick={handleChangeChecbox.bind(this, "MoreP")}
                   ></i>
                 </>
-              ) : (
-                <i className="fa-solid fa-arrow-right myArrow"></i>
-              )}
+              ) : null}
             </div>
           )}
         </div>
