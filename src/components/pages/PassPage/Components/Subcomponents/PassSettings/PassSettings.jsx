@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { AppContext } from "./provider";
+import { AppContext } from "../../../Provider/provider";
 
 const PassSettins = () => {
   const {
@@ -141,7 +141,7 @@ const PassSettins = () => {
             className="btn btn-light btn-sm"
             onClick={handleSettings.bind(this, "ssP")}
           >
-            zapisz ustawieni na później
+            zapisz ustawienia na później
           </button>
           <button
             className="btn btn-light btn-sm"

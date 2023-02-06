@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import PassResult from "../pass_componenst/PassResult";
-import PassInProgress from "../pass_componenst/PassInProgress";
-import { AppContext } from "../pass_componenst/provider";
+import PassResult from "./Components/PassResult/PassResult";
+import PassInProgress from "./Components/PassInProgress/PassInProgress";
+import { AppContext } from "./Provider/provider";
 
 function PassPage() {
   const [newState, setState] = useState({

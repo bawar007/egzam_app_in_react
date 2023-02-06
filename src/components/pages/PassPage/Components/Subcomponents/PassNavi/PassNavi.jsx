@@ -1,7 +1,7 @@
 import React, { useContext, useState, useRef } from "react";
-import { AppContext } from "./provider";
+import { AppContext } from "../../../Provider/provider";
 
-import PassSettings from "./PassSettings";
+import PassSettings from "../PassSettings/PassSettings";
 
 const PassNavi = () => {
   const { newState, settingsValue, setSettingsValue, setState, handleShow } =

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { AppContext } from "./provider";
+import { AppContext } from "../../../Provider/provider";
 
 const Buttons = ({ result }) => {
   const { newState, setState, setScore, handleShow, handleClickRestart } =

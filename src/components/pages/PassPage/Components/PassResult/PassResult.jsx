@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { AppContext } from "./provider";
+import { AppContext } from "../../Provider/provider";
 
-import PassNavi from "./PassNavi";
-import Buttons from "./PassButtons";
+import PassNavi from "../Subcomponents/PassNavi/PassNavi";
+import Buttons from "../Subcomponents/PassButtons/PassButtons";
 
 const PassResult = () => {
   const { newState, score } = useContext(AppContext);

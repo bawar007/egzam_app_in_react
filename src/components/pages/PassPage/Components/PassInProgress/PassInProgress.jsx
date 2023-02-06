@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 
-import { AppContext } from "./provider";
+import { AppContext } from "../../Provider/provider";
 
-import PassNavi from "./PassNavi";
+import PassNavi from "../Subcomponents/PassNavi/PassNavi";
 
-import Buttons from "./PassButtons";
+import Buttons from "../Subcomponents/PassButtons/PassButtons";
 
 const PassInProgress = () => {
   const { newState, handleShow, setState, settingsValue } =

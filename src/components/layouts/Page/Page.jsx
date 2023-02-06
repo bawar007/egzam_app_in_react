@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import PassPage from "../pages/PassPage";
-import HomePage from "../pages/HomePage";
-import WikiPage from "../pages/WikiPage";
-import ContactPage from "../pages/ContactPage";
+import PassPage from "../../pages/PassPage/PassPage";
+import HomePage from "../../pages/HomePage/HomePage";
+import WikiPage from "../../pages/WikiPage/WikiPage";
+import ContactPage from "../../pages/ContactPage/ContactPage";
 
 const Page = () => {
   return (

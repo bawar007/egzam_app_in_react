@@ -1,9 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 
-import Navigation from "./Navigation";
-import Page from "./Page";
-import Footer from "./Footer";
+import Navigation from "../Navigation/Navigation";
+import Page from "../Page/Page";
+import Footer from "../Footer/Footer";
 
 function App() {
   return (
