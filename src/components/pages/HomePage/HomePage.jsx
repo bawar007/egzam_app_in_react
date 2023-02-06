@@ -8,7 +8,7 @@ const HomePage = () => {
       <h2>Witaj na naszej stronie</h2>
       <div className="img">
         <img
-          // src="https://bawar007.github.io/egzam_app_in_react/picture/img1.jpg"
+          //src="https://bawar007.github.io/egzam_app_in_react/picture/img1.jpg"
           src="/egzam_app_in_react/picture/img1.jpg"
           alt="pic1"
         />

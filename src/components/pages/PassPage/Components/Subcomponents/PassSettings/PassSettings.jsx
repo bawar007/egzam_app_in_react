@@ -1,16 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 
 import { AppContext } from "../../../Provider/provider";
+import SettingPopup from "./subcomponents/SettingsPopup/SettingsPopup";
 
-const PassSettins = () => {
+const PassSettings = ({ first }) => {
   const {
     handleChangeNumber,
     settingsValue,
     handleChangeSelectValueSet,
-    handleClickRestart,
     setSettingsValue,
+    handleClickRestart,
     newState,
   } = useContext(AppContext);
+
+  const width = useRef(window.innerWidth);
 
   const handleAuto = () => {
     setSettingsValue((prev) => {
@@ -27,81 +30,53 @@ const PassSettins = () => {
     });
   };
 
-  const handleSettings = (e) => {
-    if (e === "lnT") {
-      handleClickRestart();
-      setSettingsValue((p) => {
-        return {
-          ...p,
-          visibility: false,
-          showAccept: false,
-          checked: true,
-        };
-      });
-    } else if (e === "quitS") {
-      setSettingsValue((p) => {
-        return {
-          showAccept: false,
-          visibility: true,
-          value: newState.value,
-          checked: false,
-          items: newState.items,
-        };
-      });
-    } else if (e === "ssP") {
-      setSettingsValue((p) => {
-        return {
-          ...p,
-          checked: true,
-          showAccept: false,
-          visibility: false,
-        };
-      });
-    } else if (e === "qS") {
-      setSettingsValue((p) => {
-        return { ...p, showAccept: false };
-      });
-    }
-  };
+  const { items, value, autoNextQuestion, showAccept } = settingsValue;
 
   return (
     <div className="setting">
-      <h4>Wybrana ilość pytań: {settingsValue.items}</h4>
+      {first && <h4>Rozpocznij test</h4>}
+      <h4>Wybrana ilość pytań: {first ? newState.items : items}</h4>
       <input
         type="range"
-        value={settingsValue.items}
+        value={first ? newState.items : items}
         onChange={handleChangeNumber}
         min="1"
         max="40"
         step="1"
         className="form-range"
-        style={{ width: "50%" }}
-        name="settingsNumber"
+        style={width > 700 ? { width: "50%" } : null}
+        name={first ? null : "settingsNumber"}
       />
-      <br />
-      Rodzaj egzaminu:
-      <select
-        value={settingsValue.value}
-        onChange={handleChangeSelectValueSet}
-        className="form-select form-select-sm"
-        name="settingsSelectValue"
-        style={{
-          width: "30%",
-          marginBottom: 20,
-          marginLeft: 10,
-          display: "inline",
-        }}
-      >
-        <option value="ee8">EE8</option>
-        <option value="ee9">EE9</option>
-      </select>
+      <label>
+        Rodzaj egzaminu:
+        <select
+          value={first ? newState.value : value}
+          onChange={handleChangeSelectValueSet}
+          className="form-select form-select-sm"
+          name={first ? null : "settingsSelectValue"}
+          style={
+            width > 700
+              ? {
+                  width: "30%",
+                  marginBottom: 20,
+                  marginLeft: 10,
+                  display: "inline",
+                }
+              : null
+          }
+        >
+          <option value="ee8">EE8</option>
+          <option value="ee9">EE9</option>
+        </select>
+      </label>
+
       <div className="yes_no form-switch">
         <h1>Przełączanie automatyczne pytań</h1>
         <div>
           <label
             className="form-check-label"
             htmlFor="flexSwitchCheck"
-            style={settingsValue.autoNextQuestion ? null : { color: "red" }}
+            style={autoNextQuestion ? null : { color: "red" }}
           >
             NIE
           </label>
@@ -111,7 +86,7 @@ const PassSettins = () => {
             role="switch"
             id="flexSwitchCheck"
             onChange={handleAuto}
-            checked={settingsValue.autoNextQuestion}
+            checked={autoNextQuestion}
             style={{
               margin: 0,
             }}
@@ -119,40 +94,21 @@ const PassSettins = () => {
           <label
             className="form-check-label"
             htmlFor="flexSwitchCheck"
-            style={settingsValue.autoNextQuestion ? { color: "green" } : null}
+            style={autoNextQuestion ? { color: "green" } : null}
           >
             TAK
           </label>
         </div>
       </div>
-      <button onClick={handleAcceptSettings} className="btn btn-light btn-lg">
+      <button
+        onClick={first ? handleClickRestart : handleAcceptSettings}
+        className="btn btn-light btn-lg"
+      >
         Zaakceptuj
       </button>
-      {settingsValue.showAccept ? (
-        <div className="settings_btn">
-          <button onClick={handleSettings.bind(this, "qS")}>X</button>
-          <button
-            className="btn btn-light btn-sm"
-            onClick={handleSettings.bind(this, "lnT")}
-          >
-            załaduj nowy test
-          </button>
-          <button
-            className="btn btn-light btn-sm"
-            onClick={handleSettings.bind(this, "ssP")}
-          >
-            zapisz ustawienia na później
-          </button>
-          <button
-            className="btn btn-light btn-sm"
-            onClick={handleSettings.bind(this, "quitS")}
-          >
-            porzuć ustawienia
-          </button>
-        </div>
-      ) : null}
+      {showAccept && <SettingPopup />}
     </div>
   );
 };
 
-export default PassSettins;
+export default PassSettings;

@@ -2,9 +2,10 @@ import React, { useContext, useState, useRef } from "react";
 import { AppContext } from "../../../Provider/provider";
 
 import PassSettings from "../PassSettings/PassSettings";
+import NaviList from "./Subcomponents/NaviList";
 
 const PassNavi = () => {
-  const { newState, settingsValue, setSettingsValue, setState, handleShow } =
+  const { newState, settingsValue, setSettingsValue, handleShow } =
     useContext(AppContext);
 
   const { tableSended } = newState;
@@ -22,12 +23,6 @@ const PassNavi = () => {
   const showSetting = () => {
     setSettingsValue((p) => {
       return { ...p, visibility: !p.visibility };
-    });
-  };
-
-  const handleNavi = (a) => {
-    setState((prevState) => {
-      return { ...prevState, currentQuestion: a };
     });
   };
 
@@ -55,27 +50,8 @@ const PassNavi = () => {
 
   const naviList = tableSended.map((el, index) => {
     let itemS = windowWidth.current > 700 ? 3 : 2;
-    console.log(windowWidth);
     if (currentQ - itemS < index && currentQ + itemS > index) {
-      return (
-        <li
-          key={el.id}
-          onClick={handleNavi.bind(this, index)}
-          className={
-            newState.form
-              ? currentQ === index
-                ? "activeNav myLi"
-                : el.action
-                ? "goodAnswer myLi"
-                : "badAnswer myLi"
-              : currentQ === index
-              ? "activeNav myLi"
-              : "myLi"
-          }
-        >
-          {index + 1}
-        </li>
-      );
+      return <NaviList key={el.id} action={el.action} index={index} />;
     } else {
       return null;
     }
@@ -83,49 +59,13 @@ const PassNavi = () => {
 
   const questionListP = tableSended.map((el, index) => {
     if (currentQ - 1 < index) {
-      return (
-        <li
-          key={el.id}
-          onClick={handleNavi.bind(this, index)}
-          className={
-            newState.form
-              ? currentQ === index
-                ? "activeNav myLi"
-                : el.action
-                ? "goodAnswer myLi"
-                : "badAnswer myLi"
-              : currentQ === index
-              ? "activeNav myLi"
-              : "myLi"
-          }
-        >
-          {index + 1}
-        </li>
-      );
+      return <NaviList key={el.id} action={el.action} index={index} />;
     } else return null;
   });
 
   const questionListLeft = tableSended.map((el, index) => {
     if (currentQ + 1 > index) {
-      return (
-        <li
-          key={el.id}
-          onClick={handleNavi.bind(this, index)}
-          className={
-            newState.form
-              ? currentQ === index
-                ? "activeNav myLi"
-                : el.action
-                ? "goodAnswer myLi"
-                : "badAnswer myLi"
-              : currentQ === index
-              ? "activeNav myLi"
-              : "myLi"
-          }
-        >
-          {index + 1}
-        </li>
-      );
+      return <NaviList key={el.id} action={el.action} index={index} />;
     } else return null;
   });
 
@@ -143,14 +83,14 @@ const PassNavi = () => {
             </div>
           ) : (
             <div>
-              {currentQ > 2 ? (
+              {currentQ > 2 && (
                 <>
                   <i
                     className="fa-solid fa-angles-left myArrow"
                     onClick={handleChangeChecbox.bind(this, "MoreM")}
                   ></i>
                 </>
-              ) : null}
+              )}
               <i
                 className="fa-solid fa-chevron-left myArrow"
                 onClick={handleShow.bind(this, "back")}

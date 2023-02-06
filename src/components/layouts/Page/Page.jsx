@@ -13,6 +13,7 @@ const Page = () => {
       <Route path="/pass" element={<PassPage />} />
       <Route path="/wikisite" element={<WikiPage />} />
       <Route path="/contact" element={<ContactPage />} />
+      <Route path="/admin" element={<p>AdminPage</p>} />
     </Routes>
   );
 };

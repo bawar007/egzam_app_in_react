@@ -7,7 +7,7 @@ import PassNavi from "../Subcomponents/PassNavi/PassNavi";
 import Buttons from "../Subcomponents/PassButtons/PassButtons";
 
 const PassInProgress = () => {
-  const { newState, handleShow, setState, settingsValue } =
+  const { newState, setState, settingsValue, handleShow } =
     useContext(AppContext);
 
   const { tableSended, currentQuestion } = newState;

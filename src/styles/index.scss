@@ -1,3 +1,5 @@
+$font-size: 28px;
+
 @import "reset";
 @import "../components/pages/HomePage/HomePage";
 @import "../components/pages/PassPage/PassPage";
@@ -11,7 +13,7 @@
 @import "../components/pages/PassPage/Components/PassResult/PassResult";
 
 @import "../components/pages/PassPage/Components/Subcomponents/PassButtons/Buttons";
-
+@import "../components/pages/PassPage/Components/Subcomponents/PassSettings/PassSettings.scss";
 body {
   background-color: rgb(19, 19, 19);
   font-family: Arial, Helvetica, sans-serif;

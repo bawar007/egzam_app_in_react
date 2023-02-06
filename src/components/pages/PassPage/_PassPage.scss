@@ -1,25 +1,5 @@
 .pass_page {
   display: flex;
   flex-direction: column;
-  .pass_app {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    h1 {
-      margin-bottom: 20px;
-    }
-    input {
-      width: 50%;
-    }
-    select {
-      margin: 20px 0;
-      width: 30%;
-    }
-    .btn:hover {
-      color: white;
-      background-color: rgb(8, 66, 124);
-      border-color: rgb(8, 66, 124);
-    }
-  }
+  font-size: 24px;
 }
