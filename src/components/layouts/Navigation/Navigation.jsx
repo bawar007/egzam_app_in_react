@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { NavLink } from "react-router-dom";
 
@@ -16,8 +16,15 @@ const Navigation = () => {
     setState((p) => !p);
   };
 
+  const menuRef = useRef();
+  console.log(menuRef);
+  useEffect(() => {
+    menuRef.current.addEventListener("click", () => setState(false));
+    return menuRef.current.removeEventListener("click", () => setState(false));
+  }, [menuRef]);
+
   const menu = list.map((item) => (
-    <li key={item.name} onClick={handleChange}>
+    <li key={item.name} onClick={() => setState(false)}>
       <NavLink to={item.path} state={item.state}>
         {item.name}
       </NavLink>
@@ -35,7 +42,9 @@ const Navigation = () => {
       <label className="menu-button-container" htmlFor="menu-toggle">
         <div className="menu-button"></div>
       </label>
-      <ul className="menu">{menu}</ul>
+      <ul className="menu" ref={menuRef}>
+        {menu}
+      </ul>
     </section>
   );
 };

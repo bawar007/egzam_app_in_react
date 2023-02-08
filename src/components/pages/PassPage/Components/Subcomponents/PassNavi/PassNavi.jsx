@@ -136,7 +136,7 @@ const PassNavi = () => {
         </div>
       </div>
       <div className="changeAnswers">
-        <div className="form-check form-check-reverse form-switch">
+        <div className="changeSettings">
           <input
             type="checkbox"
             id="flexSwitchCheckDefault"
@@ -144,7 +144,11 @@ const PassNavi = () => {
             checked={settingsValue.visibility}
             hidden
           />
-          <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+          <label
+            className="form-check-label"
+            id="setSettings"
+            htmlFor="flexSwitchCheckDefault"
+          >
             <i className="fa-solid fa-wrench fa-2xl"></i>
           </label>
         </div>
