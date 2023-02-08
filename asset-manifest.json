@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/egzam_app_in_react/static/css/main.bcd4b75a.css",
-    "main.js": "/egzam_app_in_react/static/js/main.8a574b3b.js",
+    "main.css": "/egzam_app_in_react/static/css/main.81f15b69.css",
+    "main.js": "/egzam_app_in_react/static/js/main.c003698e.js",
     "index.html": "/egzam_app_in_react/index.html",
-    "main.bcd4b75a.css.map": "/egzam_app_in_react/static/css/main.bcd4b75a.css.map",
-    "main.8a574b3b.js.map": "/egzam_app_in_react/static/js/main.8a574b3b.js.map"
+    "main.81f15b69.css.map": "/egzam_app_in_react/static/css/main.81f15b69.css.map",
+    "main.c003698e.js.map": "/egzam_app_in_react/static/js/main.c003698e.js.map"
   },
   "entrypoints": [
-    "static/css/main.bcd4b75a.css",
-    "static/js/main.8a574b3b.js"
+    "static/css/main.81f15b69.css",
+    "static/js/main.c003698e.js"
   ]
 }
