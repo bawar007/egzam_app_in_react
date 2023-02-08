@@ -5,6 +5,7 @@ import { AppContext } from "../../Provider/provider";
 import PassNavi from "../Subcomponents/PassNavi/PassNavi";
 
 import Buttons from "../Subcomponents/PassButtons/PassButtons";
+import SettingsOnOff from "../Subcomponents/PassSettings/subcomponents/SettingsOnOff/SettingsOnOff";
 
 const PassInProgress = () => {
   const { newState, setState, settingsValue, handleShow } =
@@ -48,20 +49,37 @@ const PassInProgress = () => {
     <div key={id} className="pass_in_progress">
       <PassNavi />
       <div className="pass_in_progress_answer">
+        <SettingsOnOff />
         <h3>{currentQuestion + 1 + ". " + question}</h3>
-        <label className={selectedAnswer === "a" ? "isChecked" : null}>
+        <label
+          className={
+            selectedAnswer === "a" ? "isChecked label_answer" : "label_answer"
+          }
+        >
           <input type="radio" name={id} value="a" onChange={handleChange} />
           {" A. " + answerA}
         </label>
-        <label className={selectedAnswer === "b" ? "isChecked" : null}>
+        <label
+          className={
+            selectedAnswer === "b" ? "isChecked label_answer" : "label_answer"
+          }
+        >
           <input type="radio" name={id} value="b" onChange={handleChange} />
           {" B.  " + answerB}
         </label>
-        <label className={selectedAnswer === "c" ? "isChecked" : null}>
+        <label
+          className={
+            selectedAnswer === "c" ? "isChecked label_answer" : "label_answer"
+          }
+        >
           <input type="radio" name={id} value="c" onChange={handleChange} />
           {" C.  " + answerC}
         </label>
-        <label className={selectedAnswer === "d" ? "isChecked" : null}>
+        <label
+          className={
+            selectedAnswer === "d" ? "isChecked label_answer" : "label_answer"
+          }
+        >
           <input type="radio" name={id} value="d" onChange={handleChange} />
           {" D.  " + answerD}
         </label>

@@ -3,6 +3,7 @@ import { AppContext } from "../../Provider/provider";
 
 import PassNavi from "../Subcomponents/PassNavi/PassNavi";
 import Buttons from "../Subcomponents/PassButtons/PassButtons";
+import SettingsOnOff from "../Subcomponents/PassSettings/subcomponents/SettingsOnOff/SettingsOnOff";
 
 const PassResult = () => {
   const { newState, score } = useContext(AppContext);
@@ -54,6 +55,7 @@ const PassResult = () => {
         <h3 className="pass_result_score">
           TWÓJ WYNIK: {score}/{tableSended.length}
         </h3>
+        <SettingsOnOff />
         <h3>
           {currentQuestion + 1}. {question}
         </h3>

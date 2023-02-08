@@ -13,7 +13,7 @@ const PassSettings = ({ first, showSetting }) => {
     newState,
   } = useContext(AppContext);
 
-  const width = useRef(window.innerWidth);
+  const widtH = useRef(window.innerWidth);
 
   const handleAuto = () => {
     setSettingsValue((prev) => {
@@ -33,8 +33,11 @@ const PassSettings = ({ first, showSetting }) => {
   const { items, value, autoNextQuestion, showAccept } = settingsValue;
 
   return (
-    <div className="settingsBackground">
-      <div className="setting">
+    <div className={first ? null : "settingsBackground"}>
+      <div
+        className={!first ? "setting second" : "setting"}
+        style={first && { marginTop: "10%" }}
+      >
         {first && <h4>Rozpocznij test</h4>}
         <h4>Wybrana ilość pytań: {first ? newState.items : items}</h4>
         <input
@@ -45,26 +48,16 @@ const PassSettings = ({ first, showSetting }) => {
           max="40"
           step="1"
           className="form-range"
-          style={width > 700 ? { width: "50%" } : null}
+          style={widtH.current > 700 ? { width: "50%" } : null}
           name={first ? null : "settingsNumber"}
         />
-        <label>
+        <label className="passSelect label_settings">
           Rodzaj egzaminu:
           <select
             value={first ? newState.value : value}
             onChange={handleChangeSelectValueSet}
             className="form-select form-select-sm"
             name={first ? null : "settingsSelectValue"}
-            style={
-              width > 700
-                ? {
-                    width: "30%",
-                    marginBottom: 20,
-                    marginLeft: 10,
-                    display: "inline",
-                  }
-                : null
-            }
           >
             <option value="ee8">EE8</option>
             <option value="ee9">EE9</option>
@@ -75,7 +68,7 @@ const PassSettings = ({ first, showSetting }) => {
           <h1>Przełączanie automatyczne pytań</h1>
           <div>
             <label
-              className="form-check-label"
+              className="form-check-label label_settings"
               htmlFor="flexSwitchCheck"
               style={autoNextQuestion ? null : { color: "red" }}
             >
@@ -93,7 +86,7 @@ const PassSettings = ({ first, showSetting }) => {
               }}
             />
             <label
-              className="form-check-label"
+              className="form-check-label label_settings"
               htmlFor="flexSwitchCheck"
               style={autoNextQuestion ? { color: "green" } : null}
             >

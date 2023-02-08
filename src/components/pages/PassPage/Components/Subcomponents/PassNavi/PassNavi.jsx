@@ -1,12 +1,10 @@
 import React, { useContext, useState, useRef } from "react";
 import { AppContext } from "../../../Provider/provider";
 
-import PassSettings from "../PassSettings/PassSettings";
 import NaviList from "./Subcomponents/NaviList";
 
 const PassNavi = () => {
-  const { newState, settingsValue, setSettingsValue, handleShow } =
-    useContext(AppContext);
+  const { newState, handleShow } = useContext(AppContext);
 
   const { tableSended } = newState;
 
@@ -19,12 +17,6 @@ const PassNavi = () => {
     allQuestionsMoreP: false,
     allQuestionsMoreSingle: true,
   });
-
-  const showSetting = () => {
-    setSettingsValue((p) => {
-      return { ...p, visibility: !p.visibility };
-    });
-  };
 
   const handleChangeChecbox = (e) => {
     if (e === "MoreM") {
@@ -134,25 +126,6 @@ const PassNavi = () => {
             </div>
           )}
         </div>
-      </div>
-      <div className="changeAnswers">
-        <div className="changeSettings">
-          <input
-            type="checkbox"
-            id="flexSwitchCheckDefault"
-            onChange={showSetting}
-            checked={settingsValue.visibility}
-            hidden
-          />
-          <label
-            className="form-check-label"
-            id="setSettings"
-            htmlFor="flexSwitchCheckDefault"
-          >
-            <i className="fa-solid fa-wrench fa-2xl"></i>
-          </label>
-        </div>
-        {settingsValue.visibility && <PassSettings />}
       </div>
     </>
   );
