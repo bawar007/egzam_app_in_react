@@ -23,8 +23,8 @@ const AppProvider = ({ children }) => {
   const [score, setScore] = useState(0);
 
   const handleClickRestart = () => {
-    const value = settingsValue.checked ? settingsValue.value : newState.value;
-    const items = settingsValue.checked ? settingsValue.items : newState.items;
+    let value = settingsValue.checked ? settingsValue.value : newState.value;
+    let items = settingsValue.checked ? settingsValue.items : newState.items;
     //fetch("https://bawar007.github.io/egzam_app_in_react/data/pass_table.json")
     fetch("/egzam_app_in_react/data/pass_table.json")
       .then((response) => {
