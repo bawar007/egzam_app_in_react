@@ -1,3 +1,14 @@
+.popup_CloseBtn {
+  color: white;
+  background-color: #172227;
+  font-size: larger;
+  border: 0;
+  font-weight: bold;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+}
+
 @media (max-width: 700px) {
   .settings_popup {
     position: absolute;
@@ -15,20 +26,10 @@
     div:nth-child(1) {
       width: 100%;
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       margin-bottom: 20px;
       div {
         display: flex;
-        .popup_CloseBtn {
-          color: white;
-          background-color: #172227;
-          font-size: larger;
-          border: 0;
-          font-weight: bold;
-          width: 40px;
-          height: 40px;
-          padding: 5px;
-        }
       }
       div:nth-child(1) {
         justify-content: left;
@@ -53,20 +54,10 @@
     div:nth-child(1) {
       width: 100%;
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       margin-bottom: 5px;
       div {
         display: flex;
-        .popup_CloseBtn {
-          color: white;
-          background-color: #172227;
-          font-size: larger;
-          border: 0;
-          font-weight: bold;
-          width: 40px;
-          height: 40px;
-          padding: 5px;
-        }
       }
       div:nth-child(1) {
         justify-content: left;

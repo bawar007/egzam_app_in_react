@@ -15,12 +15,6 @@ const SettingsOnOff = () => {
   return (
     <div className="changeAnswers">
       <div className="changeSettings">
-        <input
-          type="checkbox"
-          id="flexSwitchCheckDefault"
-          checked={settingsValue.visibility}
-          hidden
-        />
         <i className="fa-solid fa-gear fa-lg" onClick={showSettings}></i>
       </div>
       {settingsValue.visibility && <PassSettings />}

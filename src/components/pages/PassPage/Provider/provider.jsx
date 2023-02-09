@@ -41,11 +41,10 @@ const AppProvider = ({ children }) => {
           case "ee9":
             return data.ee9;
           default:
-            console.log(`Sorry, we are out of ${value}`);
+            console.warning(`Sorry, we are out of ${value}`);
         }
       })
       .then((table) => {
-        console.log(settingsValue);
         table
           .sort(
             () => Math.random() * table.length - Math.random() * table.length
@@ -63,7 +62,14 @@ const AppProvider = ({ children }) => {
         });
         setScore(0);
         setSettingsValue((p) => {
-          return { ...p, visibility: false, showAccept: false, items, value };
+          return {
+            ...p,
+            visibility: false,
+            showAccept: false,
+            items,
+            value,
+            checked: false,
+          };
         });
       })
       .catch();

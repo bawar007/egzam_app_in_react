@@ -17,7 +17,6 @@ const Navigation = () => {
   };
 
   const menuRef = useRef();
-  console.log(menuRef);
   useEffect(() => {
     menuRef.current.addEventListener("click", () => setState(false));
     return menuRef.current.removeEventListener("click", () => setState(false));
