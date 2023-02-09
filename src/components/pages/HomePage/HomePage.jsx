@@ -1,24 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { NavLink } from "react-router-dom";
 
 const HomePage = () => {
+  const [x, setX] = useState(1);
+
+  const handleClickNext = () => {
+    setX((p) => {
+      if (p < 3 && p >= 1) {
+        return p + 1;
+      } else {
+        return 1;
+      }
+    });
+  };
+
+  const handleClickBack = () => {
+    setX((p) => {
+      if (p <= 3 && p > 1) {
+        return p - 1;
+      } else {
+        return 3;
+      }
+    });
+  };
+
   return (
     <div className="homePage">
       <h2>Witaj na naszej stronie</h2>
       <div className="img">
+        <button className="backPicture" onClick={handleClickBack}></button>
+        <button className="nextPicture" onClick={handleClickNext}></button>
         <img
-          src="https://bawar007.github.io/egzam_app_in_react/picture/img1.jpg"
-          //src="/egzam_app_in_react/picture/img1.jpg"
-          alt="pic1"
-        />
-        <img
-          src="https://bawar007.github.io/egzam_app_in_react/picture/img2.jpg"
-          alt="pic2"
-        />
-        <img
-          src="https://bawar007.github.io/egzam_app_in_react/picture/img3.jpg"
-          alt="pic3"
+          src={`https://bawar007.github.io/egzam_app_in_react/picture/img${x}.jpg`}
+          alt={`pic${x}`}
         />
       </div>
       <p>
@@ -27,7 +42,7 @@ const HomePage = () => {
       </p>
       <div className="my_buttons">
         <NavLink to="/pass" state="egzamin">
-          rozpocznij Egzamin
+          rozpocznij egzamin
         </NavLink>
       </div>
     </div>

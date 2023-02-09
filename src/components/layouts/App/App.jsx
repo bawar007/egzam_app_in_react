@@ -11,14 +11,12 @@ function App() {
     <AppProvider>
       <Router>
         <div className="App">
-          <div className="navi">
+          <nav className="navi">
             <Navigation />
-          </div>
-
-          <div className="page">
+          </nav>
+          <main className="page">
             <Page />
-          </div>
-
+          </main>
           <footer className="footer">
             <Footer />
           </footer>

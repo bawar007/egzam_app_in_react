@@ -31,7 +31,11 @@ const Navigation = () => {
   ));
   return (
     <section className="top-nav">
-      <div>React App</div>
+      <div>
+        <NavLink to="/" state="start">
+          My App
+        </NavLink>
+      </div>
       <input
         id="menu-toggle"
         type="checkbox"
