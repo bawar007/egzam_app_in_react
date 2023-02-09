@@ -3,7 +3,7 @@ import React, { useContext, useRef } from "react";
 import { AppContext } from "../../../Provider/provider";
 import SettingPopup from "./subcomponents/SettingsPopup/SettingsPopup";
 
-const PassSettings = ({ first, showSetting }) => {
+const PassSettings = ({ first }) => {
   const {
     handleChangeNumber,
     settingsValue,
@@ -33,7 +33,10 @@ const PassSettings = ({ first, showSetting }) => {
   const { items, value, autoNextQuestion, showAccept } = settingsValue;
 
   return (
-    <div className={first ? null : "settingsBackground"}>
+    <div
+      className={first ? null : "settingsBackground"}
+      style={first ? { padding: "0 10px" } : null}
+    >
       <div
         className={!first ? "setting second" : "setting"}
         style={first && { marginTop: "10%" }}
@@ -96,7 +99,7 @@ const PassSettings = ({ first, showSetting }) => {
         </div>
         <button
           onClick={first ? handleClickRestart : handleAcceptSettings}
-          className="btn btn-light btn-lg"
+          className="btn btn-light btn-lg settings_btn"
         >
           Zaakceptuj
         </button>

@@ -45,6 +45,7 @@ const AppProvider = ({ children }) => {
         }
       })
       .then((table) => {
+        console.log(settingsValue);
         table
           .sort(
             () => Math.random() * table.length - Math.random() * table.length
