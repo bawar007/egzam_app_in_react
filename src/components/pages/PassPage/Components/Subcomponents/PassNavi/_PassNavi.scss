@@ -1,25 +1,49 @@
-.displayRowWrap {
+@media (min-width: 700px) {
+  .pass_navi {
+    margin-top: 50px;
+    .myArrow {
+      padding: 20px;
+    }
+    .myLi {
+      height: 55px;
+      width: 55px;
+      &.activeNav {
+        height: 60px;
+        width: 60px;
+      }
+    }
+  }
+}
+@media (max-width: 700px) {
+  .pass_navi {
+    .myArrow {
+      padding: 10px;
+    }
+    .myUl {
+      li {
+        height: 45px;
+        width: 45px;
+      }
+    }
+    .myLi {
+      &.activeNav {
+        height: 48px;
+        width: 48px;
+      }
+    }
+  }
+}
+
+.pass_navi {
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
-}
-
-.navi {
-  margin-bottom: 50px;
-}
-
-.pass_navi {
-  @media (min-width: 701px) {
-    margin-top: 50px;
-  }
   .pass_navi_MoreMinus {
     display: flex;
   }
-
   .myArrow {
-    padding: 20px;
     border: 2px solid white;
     margin: 4px 4px;
     transition: 0.3s;
@@ -28,25 +52,14 @@
       color: yellow;
       cursor: pointer;
     }
-    @media (max-width: 700px) {
-      padding: 5px;
-    }
   }
   .myUl {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     list-style: none;
-    @media (max-width: 700px) {
-      li {
-        height: 45px;
-        width: 45px;
-      }
-    }
   }
   .myLi {
-    width: 55px;
-    height: 55px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,13 +71,7 @@
     &.activeNav {
       border-color: yellow;
       color: yellow;
-      height: 60px;
-      width: 60px;
       font-size: larger;
-      @media (max-width: 700px) {
-        height: 48px;
-        width: 48px;
-      }
     }
     &.goodAnswer {
       border-color: green;

@@ -63,7 +63,7 @@ const PassNavi = () => {
 
   return (
     <>
-      <div className="pass_navi displayRowWrap">
+      <div className="pass_navi">
         <div className="pass_navi_MoreMinus">
           {allQuestions.allQuestionsMoreM ? (
             <div className="showAllQuestionsList displayRowWrap" id="showAll">
