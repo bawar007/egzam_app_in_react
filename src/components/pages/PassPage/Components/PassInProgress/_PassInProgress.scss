@@ -5,24 +5,20 @@
   font-family: Arial, Helvetica, sans-serif;
 
   .pass_in_progress_answer {
-    margin: 30px 0;
+    margin: 20px 0;
     display: flex;
     flex-direction: column;
     text-align: left;
     border-top: 3px solid yellow;
 
     h3 {
-      padding-top: 20px;
-      padding-left: 10px;
-      padding-bottom: 20px;
+      padding: 20px 10px;
       font-size: 20px;
       background-color: #172227;
     }
     .label_answer {
       min-height: 40px;
-      padding-top: 20px;
-      padding-bottom: 20px;
-      padding-left: 10px;
+      padding: 20px 10px;
       background: #172227;
       border-left: 10px solid #172227;
       font-size: 20px;

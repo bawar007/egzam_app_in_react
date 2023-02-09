@@ -48,13 +48,17 @@ const PassResult = () => {
     }
   };
 
+  const scorePro = (score / tableSended.length) * 100;
+
   return (
     <div key={id} className="pass_result">
       <PassNavi />
       <div className="pass_result_answer">
         <h3 className="pass_result_score">
-          TWÓJ WYNIK: {score}/{tableSended.length}
+          TWÓJ WYNIK: {score}/{tableSended.length} {Math.floor(scorePro)}%
+          <p>{scorePro >= 50 ? "Brawo zdałeś" : "Niestety nie zdałeś"}</p>
         </h3>
+
         <SettingsOnOff />
         <h3>
           {currentQuestion + 1}. {question}
