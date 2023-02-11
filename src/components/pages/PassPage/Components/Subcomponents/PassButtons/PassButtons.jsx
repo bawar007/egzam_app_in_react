@@ -12,6 +12,7 @@ const Buttons = ({ result }) => {
     setState((prevState) => {
       return { ...prevState, form: true, currentQuestion: 0 };
     });
+
     tableSended.forEach((el) => {
       if (el.action) {
         setScore((p) => p + 1);
