@@ -27,7 +27,7 @@ const HomePage = () => {
 
   return (
     <div className="homePage">
-      <h2>Witaj na naszej stronie</h2>
+      <h2>Witaj na naszej stronie.</h2>
       <div className="img">
         <button className="backPicture" onClick={handleClickBack}></button>
         <button className="nextPicture" onClick={handleClickNext}></button>
